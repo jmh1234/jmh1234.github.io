@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Home | 小叽的博客</title>
+    <title>Home | jimh的博客</title>
 
     
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 
 
-<meta name="author" content="" />
-<meta name="description" content="" />
+
+<meta name="author" content="小叽" />
+<meta name="description" content="我的学习记录" />
 
 
 
@@ -20,8 +22,8 @@
 <link rel="canonical" href="http://jmh1234.github.io/" />
 
 
-<meta property="og:title" content="小叽的博客" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="jimh的博客" />
+<meta property="og:description" content="我的学习记录" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://jmh1234.github.io/" />
 <meta property="og:updated_time" content="2020-08-21T14:07:45+08:00" />
@@ -29,8 +31,8 @@
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="小叽的博客"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="jimh的博客"/>
+<meta name="twitter:description" content="我的学习记录"/>
 
 
 <link rel="stylesheet" href="/css/semantic.min.css" />
@@ -38,17 +40,29 @@
 <link rel="stylesheet" href="/css/site.css" />
 
 
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
 
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
 
 
      
   </head>
 
   
-  <body>
+  <body style="background-image: url(/me/background.jpg);">
   
     
-<nav class="ui secondary menu dream-menu">
+<nav class="ui secondary inverted menu dream-menu">
 
   <div class="item">
     <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
@@ -71,10 +85,12 @@
   <section class="ui top attached center aligned segment">
     <div class="ui small circular image">
       
+        <img src="/me/yy.jpg">
+      
     </div>
 
     
-    <h1 class="ui medium header">&#39;s blog<div class="sub header" style="margin-top: 0.5rem;"></div>
+    <h1 class="ui medium header">小叽&#39;s blog<div class="sub header" style="margin-top: 0.5rem;">前路漫漫，为剑所伴。</div>
     </h1>
     
 
@@ -100,6 +116,18 @@
   <section class="ui attached segment header-socials">
     <nav class="ui secondary menu dream-menu dream-socials">
   
+    <div class="item">
+      <a href="/index.xml">
+        <i class=" rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+  
+    <div class="item">
+      <a href="mailto:923268677@qq.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
   
 
   
@@ -110,6 +138,12 @@
 
   
 
+  
+    <div class="item">
+      <a href="https://github.com/jmh1234" target="_blank">
+        <i class=" github icon" title="GitHub"></i>
+      </a>
+    </div>
   
 
   
@@ -121,7 +155,7 @@
 
   <section class="ui bottom attached center aligned segment">
     
-      <p>© 2020 小叽的博客</p>
+      <p>© 2020 jimh的博客</p>
     
 
     <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
@@ -141,7 +175,7 @@
       <article class="ui attached segment card dream-card">
   <a class="image" href="http://jmh1234.github.io/posts/%E7%AC%AC%E4%BA%8C%E7%AF%87%E5%8D%9A%E5%AE%A2/">
     
-      <img src="/img/default3.jpg" alt="第二篇博客" />
+      <img src="/img/default2.jpg" alt="第二篇博客" />
     
   </a>
 
@@ -158,7 +192,7 @@
       <p class="author">
         @
         
-          
+          小叽
         
       </p>
     </div>
@@ -183,7 +217,7 @@
       <article class="ui attached segment card dream-card">
   <a class="image" href="http://jmh1234.github.io/posts/hugo/">
     
-      <img src="/img/default1.jpg" alt="Hugo" />
+      <img src="/img/default4.jpg" alt="Hugo" />
     
   </a>
 
@@ -201,26 +235,20 @@
         @
         
           
+            小叽
+          
         
       </p>
     </div>
     <div class="description">
-      Hugo简介 Hugo是一个由Go语言实现的静态页面生成器，所有页面都是通过Markdown(标记语言)开发，它能够快速的在GitHub上搭建个人静态博客。它使用起来非常简单，相对于Jekyll复杂的安装设置来说，Hugo仅需要一个二进制文件hugo(hugo.exe)即可轻松用于本地调试和生成静态页面。
-Hugo官网：https://gohugo.io/
-安装 Mac安装方式 brew install hugo hugo version windows 安装方式  在 Hugo Releases 页面上下载hugo_XX_Windows-64bit.zip。 下载的压缩包解压到hugo目录 例如：D:/Software/hugo 。 将压缩包的解压路径添加到环境变量PATH中。 重启机器，在cmd窗口输入 hugo version 查看Hugo是否安装成功。  创建本地博客 生成站点 hugo new site quickstart 其中quickstart为本地博客站点的名称，理论上是随意的，但是推荐为 XXX_github.io-creator
-添加主题 Hugo官方主题：https://themes.gohugo.io/ 这里使用git克隆方式下载主题。
-cd quickstart(刚刚新建站点的目录) git init git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke 然后，将这些主题添加到站点的配置文件中(config.toml)
-echo 'theme = &quot;ananke&quot;' &gt;&gt; config.toml 添加博客 其中my-first-post为博客名，可以随意更改
-hugo new posts/my-first-post.md 打开新建的md(MarkDown)文件，文件中的内容显示为
-title: &quot;My First Post&quot; date: 2019-03-26T08:47:11+01:00 draft: true 注意：默认创建的是草稿类型，需要将draft值改为false才能看到页面。
-运行Hugo Server hugo server -D 紧接着你会看到
+      <p>Hugo是一个由Go语言实现的静态页面生成器，是世界上最快的博客生成器。</p>
     </div>
   </div>
 
   <div class="extra content">
     <a>
       <i class="clock icon"></i>
-      1 minute read
+      2 minute read
     </a>
   </div>
 </article>
@@ -251,6 +279,18 @@ title: &quot;My First Post&quot; date: 2019-03-26T08:47:11+01:00 draft: true 注
       <div class="ui bottom attached segment">
         <nav class="ui secondary menu dream-menu dream-socials">
   
+    <div class="item">
+      <a href="/index.xml">
+        <i class="large rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+  
+    <div class="item">
+      <a href="mailto:923268677@qq.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
   
 
   
@@ -261,6 +301,12 @@ title: &quot;My First Post&quot; date: 2019-03-26T08:47:11+01:00 draft: true 注
 
   
 
+  
+    <div class="item">
+      <a href="https://github.com/jmh1234" target="_blank">
+        <i class="large github icon" title="GitHub"></i>
+      </a>
+    </div>
   
 
   
@@ -278,6 +324,29 @@ title: &quot;My First Post&quot; date: 2019-03-26T08:47:11+01:00 draft: true 注
 
   
     
+      <section class="sixteen wide mobile eight wide tablet eight wide computer column dream-column">
+        <footer class="ui segment">
+          <div id="disqus_thread"></div>
+          <script>
+            
+
+
+            var disqus_config = function () {
+              this.page.url = 'http:\/\/jmh1234.github.io\/';  
+              this.page.identifier = '/'; 
+            };
+
+            (function() { 
+              var d = document, s = d.createElement('script');
+              s.src = 'https://' + 'jimh' + '.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </footer>
+      </section>
+    
   
 </div>
 
@@ -286,7 +355,7 @@ title: &quot;My First Post&quot; date: 2019-03-26T08:47:11+01:00 draft: true 注
     </div>
 
     <script>
-  window.darkNav =  null 
+  window.darkNav =  true 
 </script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/semantic.min.js"></script>
@@ -300,6 +369,19 @@ title: &quot;My First Post&quot; date: 2019-03-26T08:47:11+01:00 draft: true 注
 <script src="/js/masonry.pkgd.min.js"></script>
 <script src="/js/grid.js"></script>
 
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98295641-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
     
   </body>

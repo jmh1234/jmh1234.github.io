@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>404 Not Found | 小叽的博客</title>
+    <title>404 Not Found | jimh的博客</title>
 
     
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 
 
-<meta name="author" content="" />
-<meta name="description" content="" />
+
+<meta name="author" content="小叽" />
+<meta name="description" content="我的学习记录" />
 
 
 
@@ -21,7 +23,7 @@
 
 
 <meta property="og:title" content="404 Page not found" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="我的学习记录" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://jmh1234.github.io/404.html" />
 
@@ -30,7 +32,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="404 Page not found"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="我的学习记录"/>
 
 
 <link rel="stylesheet" href="/css/semantic.min.css" />
@@ -38,17 +40,29 @@
 <link rel="stylesheet" href="/css/site.css" />
 
 
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
 
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
 
 
      
   </head>
 
   
-  <body>
+  <body style="background-image: url(/me/background.jpg);">
   
     
-<nav class="ui secondary menu dream-menu">
+<nav class="ui secondary inverted menu dream-menu">
 
   <div class="item">
     <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
@@ -68,12 +82,12 @@
 <div class="ui container dream-404-container">
   <div class="ui basic center aligned segment">
     
-      <h1 class="ui header">
-        Oops...You are lost in dream.
+      <h1 class="ui inverted header">
+        Oops ... You are lost in dream.
         <div class="sub header">Don't worry though, click the button below to wake up.</div>
       </h1>
       <p>
-        <button class="ui button" onclick="window.location.href = '/'">Back to home</button>
+        <button class="ui inverted button" onclick="window.location.href = '/'">Back to home</button>
       </p>
     
   </div>
@@ -94,6 +108,18 @@
       <div class="ui bottom attached segment">
         <nav class="ui secondary menu dream-menu dream-socials">
   
+    <div class="item">
+      <a href="/index.xml">
+        <i class="large rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+  
+    <div class="item">
+      <a href="mailto:923268677@qq.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
   
 
   
@@ -104,6 +130,12 @@
 
   
 
+  
+    <div class="item">
+      <a href="https://github.com/jmh1234" target="_blank">
+        <i class="large github icon" title="GitHub"></i>
+      </a>
+    </div>
   
 
   
@@ -121,6 +153,29 @@
 
   
     
+      <section class="sixteen wide mobile eight wide tablet eight wide computer column dream-column">
+        <footer class="ui segment">
+          <div id="disqus_thread"></div>
+          <script>
+            
+
+
+            var disqus_config = function () {
+              this.page.url = 'http:\/\/jmh1234.github.io\/404.html';  
+              this.page.identifier = '/'; 
+            };
+
+            (function() { 
+              var d = document, s = d.createElement('script');
+              s.src = 'https://' + 'jimh' + '.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </footer>
+      </section>
+    
   
 </div>
 
@@ -129,7 +184,7 @@
     </div>
 
     <script>
-  window.darkNav =  null 
+  window.darkNav =  true 
 </script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/semantic.min.js"></script>
@@ -139,6 +194,19 @@
 <script src="/js/theme.js"></script>
 
      
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98295641-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
     
   </body>

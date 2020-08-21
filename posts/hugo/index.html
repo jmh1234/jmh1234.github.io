@@ -4,22 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Hugo | 小叽的博客</title>
+    <title>Hugo | jimh的博客</title>
 
     
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 
 
-<meta name="author" content="" />
-<meta name="description" content="Hugo简介 Hugo是一个由Go语言实现的静态页面生成器，所有页面都是通过Markdown(标记语言)开发，它能够快速的在GitHub上搭建个人静态博客。它使用起来非常简单，相对于Jekyll复杂的安装设置来说，Hugo仅需要一个二进制文件hugo(hugo.exe)即可轻松用于本地调试和生成静态页面。
-Hugo官网：https://gohugo.io/
-安装 Mac安装方式 brew install hugo hugo version windows 安装方式  在 Hugo Releases 页面上下载hugo_XX_Windows-64bit.zip。 下载的压缩包解压到hugo目录 例如：D:/Software/hugo 。 将压缩包的解压路径添加到环境变量PATH中。 重启机器，在cmd窗口输入 hugo version 查看Hugo是否安装成功。  创建本地博客 生成站点 hugo new site quickstart 其中quickstart为本地博客站点的名称，理论上是随意的，但是推荐为 XXX_github.io-creator
-添加主题 Hugo官方主题：https://themes.gohugo.io/ 这里使用git克隆方式下载主题。
-cd quickstart(刚刚新建站点的目录) git init git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke 然后，将这些主题添加到站点的配置文件中(config.toml)
-echo &#39;theme = &amp;quot;ananke&amp;quot;&#39; &amp;gt;&amp;gt; config.toml 添加博客 其中my-first-post为博客名，可以随意更改
-hugo new posts/my-first-post.md 打开新建的md(MarkDown)文件，文件中的内容显示为
-title: &amp;quot;My First Post&amp;quot; date: 2019-03-26T08:47:11&#43;01:00 draft: true 注意：默认创建的是草稿类型，需要将draft值改为false才能看到页面。
-运行Hugo Server hugo server -D 紧接着你会看到" />
+
+<meta name="author" content="小叽" />
+<meta name="description" content="Hugo是一个由Go语言实现的静态页面生成器，是世界上最快的博客生成器。
+" />
 
 
 
@@ -29,15 +24,7 @@ title: &amp;quot;My First Post&amp;quot; date: 2019-03-26T08:47:11&#43;01:00 dra
 
 
 <meta property="og:title" content="Hugo" />
-<meta property="og:description" content="Hugo简介 Hugo是一个由Go语言实现的静态页面生成器，所有页面都是通过Markdown(标记语言)开发，它能够快速的在GitHub上搭建个人静态博客。它使用起来非常简单，相对于Jekyll复杂的安装设置来说，Hugo仅需要一个二进制文件hugo(hugo.exe)即可轻松用于本地调试和生成静态页面。
-Hugo官网：https://gohugo.io/
-安装 Mac安装方式 brew install hugo hugo version windows 安装方式  在 Hugo Releases 页面上下载hugo_XX_Windows-64bit.zip。 下载的压缩包解压到hugo目录 例如：D:/Software/hugo 。 将压缩包的解压路径添加到环境变量PATH中。 重启机器，在cmd窗口输入 hugo version 查看Hugo是否安装成功。  创建本地博客 生成站点 hugo new site quickstart 其中quickstart为本地博客站点的名称，理论上是随意的，但是推荐为 XXX_github.io-creator
-添加主题 Hugo官方主题：https://themes.gohugo.io/ 这里使用git克隆方式下载主题。
-cd quickstart(刚刚新建站点的目录) git init git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke 然后，将这些主题添加到站点的配置文件中(config.toml)
-echo &#39;theme = &quot;ananke&quot;&#39; &gt;&gt; config.toml 添加博客 其中my-first-post为博客名，可以随意更改
-hugo new posts/my-first-post.md 打开新建的md(MarkDown)文件，文件中的内容显示为
-title: &quot;My First Post&quot; date: 2019-03-26T08:47:11&#43;01:00 draft: true 注意：默认创建的是草稿类型，需要将draft值改为false才能看到页面。
-运行Hugo Server hugo server -D 紧接着你会看到" />
+<meta property="og:description" content="Hugo是一个由Go语言实现的静态页面生成器，是世界上最快的博客生成器。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://jmh1234.github.io/posts/hugo/" />
 <meta property="article:published_time" content="2020-08-21T11:05:18+08:00" />
@@ -47,15 +34,7 @@ title: &quot;My First Post&quot; date: 2019-03-26T08:47:11&#43;01:00 draft: true
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hugo"/>
-<meta name="twitter:description" content="Hugo简介 Hugo是一个由Go语言实现的静态页面生成器，所有页面都是通过Markdown(标记语言)开发，它能够快速的在GitHub上搭建个人静态博客。它使用起来非常简单，相对于Jekyll复杂的安装设置来说，Hugo仅需要一个二进制文件hugo(hugo.exe)即可轻松用于本地调试和生成静态页面。
-Hugo官网：https://gohugo.io/
-安装 Mac安装方式 brew install hugo hugo version windows 安装方式  在 Hugo Releases 页面上下载hugo_XX_Windows-64bit.zip。 下载的压缩包解压到hugo目录 例如：D:/Software/hugo 。 将压缩包的解压路径添加到环境变量PATH中。 重启机器，在cmd窗口输入 hugo version 查看Hugo是否安装成功。  创建本地博客 生成站点 hugo new site quickstart 其中quickstart为本地博客站点的名称，理论上是随意的，但是推荐为 XXX_github.io-creator
-添加主题 Hugo官方主题：https://themes.gohugo.io/ 这里使用git克隆方式下载主题。
-cd quickstart(刚刚新建站点的目录) git init git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke 然后，将这些主题添加到站点的配置文件中(config.toml)
-echo &#39;theme = &quot;ananke&quot;&#39; &gt;&gt; config.toml 添加博客 其中my-first-post为博客名，可以随意更改
-hugo new posts/my-first-post.md 打开新建的md(MarkDown)文件，文件中的内容显示为
-title: &quot;My First Post&quot; date: 2019-03-26T08:47:11&#43;01:00 draft: true 注意：默认创建的是草稿类型，需要将draft值改为false才能看到页面。
-运行Hugo Server hugo server -D 紧接着你会看到"/>
+<meta name="twitter:description" content="Hugo是一个由Go语言实现的静态页面生成器，是世界上最快的博客生成器。"/>
 
 
 <link rel="stylesheet" href="/css/semantic.min.css" />
@@ -63,22 +42,38 @@ title: &quot;My First Post&quot; date: 2019-03-26T08:47:11&#43;01:00 draft: true
 <link rel="stylesheet" href="/css/site.css" />
 
 
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
 
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
 
 
     
 <link rel="stylesheet" href="/css/github-markdown.css" />
 
 
+  
+    <link rel="stylesheet" data-highlight href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/gruvbox-light.min.css" />
+  
+
 
 
   </head>
 
   
-  <body>
+  <body style="background-image: url(/me/background.jpg);">
   
     
-<nav class="ui secondary menu dream-menu">
+<nav class="ui secondary inverted menu dream-menu">
 
   <div class="item">
     <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
@@ -106,18 +101,25 @@ title: &quot;My First Post&quot; date: 2019-03-26T08:47:11&#43;01:00 draft: true
             @
             
               
+                小叽
+              
             
             · Friday, Aug 21, 2020
-            · 1 minute read
+            · 2 minute read
             · Update at Aug 21, 2020
           </div>
         </h1>
       </header>
 
       
+        <img class="ui image" style="margin-top: 2rem;" src="" />
+      
 
-      <article style="margin-top: 2rem;"><h1 id="hugo简介">Hugo简介</h1>
-<p>Hugo是一个由Go语言实现的静态页面生成器，所有页面都是通过Markdown(标记语言)开发，它能够快速的在GitHub上搭建个人静态博客。它使用起来非常简单，相对于Jekyll复杂的安装设置来说，Hugo仅需要一个二进制文件hugo(hugo.exe)即可轻松用于本地调试和生成静态页面。</p>
+      <article style="margin-top: 2rem;"><p>Hugo是一个由Go语言实现的静态页面生成器，是世界上最快的博客生成器。</p>
+<h1 id="hugo简介">Hugo简介</h1>
+<p>Hugo是一个由Go语言实现的静态页面生成器，所有页面都是通过Markdown(标记语言)开发。
+它能够快速的在GitHub上搭建个人静态博客。它使用起来非常简单，相对于Jekyll复杂的安装设置来说，
+Hugo仅需要一个二进制文件hugo(hugo.exe)即可轻松用于本地调试和生成静态页面。</p>
 <p>Hugo官网：<a href="https://gohugo.io/">https://gohugo.io/</a></p>
 <h1 id="安装">安装</h1>
 <h2 id="mac安装方式">Mac安装方式</h2>
@@ -178,8 +180,7 @@ Press Ctrl+C to stop
 <p>在Git新建仓库XXX_github.io，将生成的public文件夹上传到仓库XXX_github.io项目中，并提交版本。
 现在你就可以用浏览器输入：<a href="jmh1234.github.io">jmh1234.github.io</a> 就可以访问博客了。</p>
 <h2 id="github-pages">GitHub Pages</h2>
-<p>查看<a href="https://guides.github.com/features/pages/">GitHub Pages</a>在线帮助文档</p>
-</article>
+<p>查看<a href="https://guides.github.com/features/pages/">GitHub Pages</a>在线帮助文档</p></article>
     </section>
 
     <footer class="ui attached segment dream-tags">
@@ -197,7 +198,38 @@ Press Ctrl+C to stop
     
 
     
+      <footer class="ui bottom attached stacked segment post-disqus-area" data-html2canvas-ignore="true">
+        <div id="disqus_thread"></div>
+        <script>
+          
+
+
+          var disqus_config = function () {
+            this.page.url = 'http:\/\/jmh1234.github.io\/posts\/hugo\/';  
+            this.page.identifier = '\/posts\/hugo\/'; 
+          };
+
+          (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://' + 'jimh' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </footer>
     
+    
+    
+      <div class="ui segment utterances-comments">
+        <script src="https://utteranc.es/client.js"
+          repo="jmh1234.github.io-creator/jmh1234.github.io"
+          issue-term="og:title"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+        </script>
+      </div>
     
 
   </div>
@@ -206,10 +238,12 @@ Press Ctrl+C to stop
   <section class="ui top attached center aligned segment">
     <div class="ui small circular image">
       
+        <img src="/me/yy.jpg">
+      
     </div>
 
     
-    <div class="ui medium header">&#39;s blog<div class="sub header" style="margin-top: 0.5rem;"></div>
+    <div class="ui medium header">小叽&#39;s blog<div class="sub header" style="margin-top: 0.5rem;">前路漫漫，为剑所伴。</div>
     </div>
     
 
@@ -235,6 +269,18 @@ Press Ctrl+C to stop
   <section class="ui attached segment header-socials">
     <nav class="ui secondary menu dream-menu dream-socials">
   
+    <div class="item">
+      <a href="/index.xml">
+        <i class=" rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+  
+    <div class="item">
+      <a href="mailto:923268677@qq.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
   
 
   
@@ -245,6 +291,12 @@ Press Ctrl+C to stop
 
   
 
+  
+    <div class="item">
+      <a href="https://github.com/jmh1234" target="_blank">
+        <i class=" github icon" title="GitHub"></i>
+      </a>
+    </div>
   
 
   
@@ -256,7 +308,7 @@ Press Ctrl+C to stop
 
   <section class="ui bottom attached center aligned segment">
     
-      <p>© 2020 小叽的博客</p>
+      <p>© 2020 jimh的博客</p>
     
 
     <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
@@ -283,6 +335,18 @@ Press Ctrl+C to stop
       <div class="ui bottom attached segment">
         <nav class="ui secondary menu dream-menu dream-socials">
   
+    <div class="item">
+      <a href="/index.xml">
+        <i class="large rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+  
+    <div class="item">
+      <a href="mailto:923268677@qq.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
   
 
   
@@ -293,6 +357,12 @@ Press Ctrl+C to stop
 
   
 
+  
+    <div class="item">
+      <a href="https://github.com/jmh1234" target="_blank">
+        <i class="large github icon" title="GitHub"></i>
+      </a>
+    </div>
   
 
   
@@ -317,7 +387,7 @@ Press Ctrl+C to stop
     </div>
 
     <script>
-  window.darkNav =  null 
+  window.darkNav =  true 
 </script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/semantic.min.js"></script>
@@ -331,8 +401,45 @@ Press Ctrl+C to stop
 <script src="/js/post.js"></script>
 
 
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+
+  
+    
+      <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js"></script>
+     
+  
+
+  <script>
+  hljs.initHighlightingOnLoad()
+  setHighlightTheme()
+
+  function setHighlightTheme() {
+    var isDark = localStore.getItem('hugo-theme-dream-is-dark')
+    var lightTheme = "gruvbox-light"
+    var darkTheme = "gruvbox-dark"
+    var theme = isDark ? darkTheme : lightTheme
+
+    $('link[data-highlight]').attr('href', 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/' + theme + '.min.css')
+    $('pre').css('background', isDark ? '#333' : '')
+  }
+</script>
 
 
+
+
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98295641-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
     
   </body>
