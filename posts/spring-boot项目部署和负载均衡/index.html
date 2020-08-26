@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Spring Boot项目部署以及负载均衡 | jimh的博客</title>
+
+    
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="小叽" />
+<meta name="description" content="本文将介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器。
+" />
+
+
+
+<meta name="generator" content="Hugo 0.74.2" />
+
+<link rel="canonical" href="http://jmh1234.github.io/posts/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" />
+
+
+<meta property="og:title" content="Spring Boot项目部署以及负载均衡" />
+<meta property="og:description" content="本文将介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://jmh1234.github.io/posts/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" />
+<meta property="article:published_time" content="2020-08-21T14:07:45+08:00" />
+<meta property="article:modified_time" content="2020-08-21T14:07:45+08:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring Boot项目部署以及负载均衡"/>
+<meta name="twitter:description" content="本文将介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器。"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+    
+<link rel="stylesheet" href="/css/github-markdown.css" />
+
+
+  
+    <link rel="stylesheet" data-highlight href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/gruvbox-light.min.css" />
+  
+
+
+
+  </head>
+
+  
+  <body style="background-image: url(/me/background.jpg);">
+  
+    
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="Home" onclick="window.location.href = 'http:\/\/jmh1234.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h1 class="ui large header">
+          Spring Boot项目部署以及负载均衡
+          <div class="sub header">
+            @
+            
+              
+                小叽
+              
+            
+            · Friday, Aug 21, 2020
+            · 4 minute read
+            · Update at Aug 21, 2020
+          </div>
+        </h1>
+      </header>
+
+      
+        <img class="ui image" style="margin-top: 2rem;" src="" />
+      
+
+      <article style="margin-top: 2rem;"><p>本文将介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器。</p>
+<h1 id="集群负载均衡分布式的区别与联系">集群、负载均衡、分布式的区别与联系</h1>
+<h2 id="集群">集群</h2>
+<p>集群是指同一种组件的多个实例，形成的逻辑上的整体。是指同一个系统，部署在多台服务器上，将很多服务器集中起来一起进行同一种服务，
+在客户端看来就像是只有一个服务器。</p>
+<h2 id="负载均衡">负载均衡</h2>
+<p>负载均衡是指将请求分摊到多个操作单元也就是分开部署的服务器上，Nginx是常用的反向代理服务器，可以用来做负载均衡。
+##分布式
+分布式是指通过网络连接的多个组件，为了完成共同的任务而通过交换信息协作的计算机节点组成的系统。
+将一个大的业务拆分成多个小的业务分别部署到不同的服务器上。其目的是利用更多的机器，处理更多的数据。</p>
+<h2 id="负载均衡集群">负载均衡集群</h2>
+<p>负载均衡集群为企业需求提供了更实用的系统。如名称所暗示的，该系统使负载可以在计算机集群中尽可能平均地分摊处理。
+该负载可能是需要均衡的应用程序处理负载或网络流量负载。这样的系统非常适合于运行同一组应用程序的大量用户。
+每个节点都可以处理一部分负载，并且可以在节点之间动态分配负载，以实现平衡。对于网络流量也是如此。
+通常，网络服务器应用程序接受了太多入网流量，以致无法迅速处理，这就需要将流量发送给在其它节点上运行的网络服务器应用。
+还可以根据每个节点上不同的可用资源或网络的特殊环境来进行优化。</p>
+<h1 id="spring-boot项目的部署">Spring Boot项目的部署</h1>
+<h2 id="maven插件exec部署">maven插件exec部署</h2>
+<p>pom.xml文件配置：</p>
+<pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+    &lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;3.0.0&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;executable&gt;java&lt;/executable&gt;
+        &lt;arguments&gt;
+            &lt;argument&gt;-classpath&lt;/argument&gt;
+            &lt;!-- automatically creates the classpath using all project dependencies,
+                 also adding the project build directory --&gt;
+            &lt;classpath/&gt;
+            &lt;argument&gt;com.demo.test.Application&lt;/argument&gt; &lt;!--Spring Boot 项目启动的入口文件--&gt;
+        &lt;/arguments&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt; &lt;!--maven exec plugin--&gt;
+</code></pre><p>在pom文件中引入上述配置后在控制台窗口执行<code>mvn exec:exec</code>即可部署该项目，该项目的默认端口号为8080。
+或者在<code>cmd</code>窗口中奖路径设置到当前项目的根路径下后执行命令<code>mvn exec:exec</code>同样可以部署该项目。</p>
+<h2 id="jar包部署spring-boot项目">jar包部署Spring Boot项目</h2>
+<h3 id="生成jar文件">生成Jar文件</h3>
+<p>pom.xml文件配置：</p>
+<pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;source&gt;1.8&lt;/source&gt;
+        &lt;target&gt;1.8&lt;/target&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;&lt;!--打jar包--&gt;
+&lt;plugin&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;repackage&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;&lt;!--打jar包--&gt;
+</code></pre><p>在pom文件中引入上述配置后在控制台窗口执行<code>mvn package</code>获取该项目的jar文件，该文件位于target目录下。</p>
+<h3 id="部署">部署</h3>
+<p>在控制台窗口将路径设置到target下，执行命令<code>java -Dserver.port=8081 -jar spring-boot-project-0.0.1.jar</code>即可启动该项目。
+或者在<code>cmd</code>窗口中奖路径设置到当前项目的target目录下后执行命令<code>java -Dserver.port=8081 -jar spring-boot-project-0.0.1.jar</code>同样可以部署该项目。
+其中 -Dserver.port 指令为了指定额外的端口号。</p>
+<h2 id="docker-部署">docker 部署</h2>
+<p>dockerfile文件内容</p>
+<pre><code>FROM java:openjdk-8u111-alpine
+
+RUN mkdir /app
+
+WORKDIR /app
+
+COPY target/spring-boot-project-0.0.1.jar /app
+
+EXPOSE 8080
+
+CMD [&quot;java&quot;,&quot;-jar&quot;,&quot;spring-boot-project-0.0.1.jar&quot;]
+
+</code></pre><ol>
+<li>配置好dockerfile文件后通过<code>docker build .</code>将该项目制作成images。</li>
+<li>通过<code>docker images</code> 查看当前容器中的镜像，找到刚刚制作的镜像的ID。</li>
+<li>通过<code>docker run --restart=always --name=mySpringBootApp -p 8082:8080 -d &lt;镜像id&gt;</code> 启动该镜像
+ps：docker可以看做是一台独立的计算机要时刻注意ip地址的问题。</li>
+</ol>
+<p>#Nginx流量转发
+外部nginx.conf文件配置</p>
+<pre><code>events{ }
+
+http {
+    upstream myapp1 {
+        server 192.168.1.164:8080;
+        server 192.168.1.164:8081;
+        server 192.168.99.100:8082;
+    }
+
+    server {
+        listen 80;
+
+        location / {
+            proxy_pass http://myapp1;
+        }
+    }
+}
+</code></pre><ol>
+<li>其中192.168.1.164路由器分配给为宿主机的ip地址，192.168.99.100为docker容器的地址。</li>
+<li>Nginx监听80端口，将流量均匀的转发给myapp1中的三个服务。其中8080通过exec插件部署，8081通过jar文件方式部署，8082通过docker部署。</li>
+<li>启动Nginx：docker run -v &ldquo;$(pwd)&quot;/nginx.conf:/etc/nginx/nginx.conf:ro -p 80:80 -d nginx
+ps:当前的文件路径(pwd)为C:\Users\用户\tmp
+Nginx启动成功后就可以通过 192.168.99.100 + 后台服务接口名称访问项目</li>
+</ol></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+          <a class="ui label">No Tags</a>
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>Save as image
+      </div>
+    </footer>
+
+    
+
+    
+      <footer class="ui bottom attached stacked segment post-disqus-area" data-html2canvas-ignore="true">
+        <div id="disqus_thread"></div>
+        <script>
+          
+
+
+          var disqus_config = function () {
+            this.page.url = 'http:\/\/jmh1234.github.io\/posts\/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1\/';  
+            this.page.identifier = '\/posts\/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1\/'; 
+          };
+
+          (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://' + 'jimh' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </footer>
+    
+    
+    
+      <div class="ui segment utterances-comments">
+        <script src="https://utteranc.es/client.js"
+          repo="jmh1234.github.io-creator/jmh1234.github.io"
+          issue-term="og:title"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+        </script>
+      </div>
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/me/portrait.jpg">
+      
+    </div>
+
+    
+    <div class="ui medium header">小叽&#39;s blog<div class="sub header" style="margin-top: 0.5rem;">前路漫漫，为剑所伴。</div>
+    </div>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="Archives"></i>
+      </a>
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="All Tags"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="All Categories"></i>
+      </a>
+    </div>
+  </section>
+
+  
+
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="/index.xml">
+        <i class=" rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+  
+    <div class="item">
+      <a href="mailto:923268677@qq.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/jmh1234" target="_blank">
+        <i class=" github icon" title="GitHub"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2020 jimh的博客</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">Social Links</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="/index.xml">
+        <i class="large rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+  
+    <div class="item">
+      <a href="mailto:923268677@qq.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/jmh1234" target="_blank">
+        <i class="large github icon" title="GitHub"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+  
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.darkNav =  true 
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+
+  
+    
+      <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js"></script>
+     
+  
+
+  <script>
+  hljs.initHighlightingOnLoad()
+  setHighlightTheme()
+
+  function setHighlightTheme() {
+    var isDark = localStore.getItem('hugo-theme-dream-is-dark')
+    var lightTheme = "gruvbox-light"
+    var darkTheme = "gruvbox-dark"
+    var theme = isDark ? darkTheme : lightTheme
+
+    $('link[data-highlight]').attr('href', 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/' + theme + '.min.css')
+    $('pre').css('background', isDark ? '#333' : '')
+  }
+</script>
+
+
+
+
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98295641-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </body>
+</html>
