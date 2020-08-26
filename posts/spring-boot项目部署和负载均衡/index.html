@@ -13,7 +13,7 @@
 
 
 <meta name="author" content="小叽" />
-<meta name="description" content="本文将介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器。
+<meta name="description" content="本文主要介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器进行流量转发。
 " />
 
 
@@ -24,17 +24,17 @@
 
 
 <meta property="og:title" content="Spring Boot项目部署以及负载均衡" />
-<meta property="og:description" content="本文将介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器。" />
+<meta property="og:description" content="本文主要介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器进行流量转发。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://jmh1234.github.io/posts/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" />
-<meta property="article:published_time" content="2020-08-21T14:07:45+08:00" />
-<meta property="article:modified_time" content="2020-08-21T14:07:45+08:00" />
+<meta property="article:published_time" content="2020-08-26T14:07:45+08:00" />
+<meta property="article:modified_time" content="2020-08-26T14:07:45+08:00" />
 
 
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Spring Boot项目部署以及负载均衡"/>
-<meta name="twitter:description" content="本文将介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器。"/>
+<meta name="twitter:description" content="本文主要介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器进行流量转发。"/>
 
 
 <link rel="stylesheet" href="/css/semantic.min.css" />
@@ -104,9 +104,9 @@
                 小叽
               
             
-            · Friday, Aug 21, 2020
+            · Wednesday, Aug 26, 2020
             · 4 minute read
-            · Update at Aug 21, 2020
+            · Update at Aug 26, 2020
           </div>
         </h1>
       </header>
@@ -115,7 +115,7 @@
         <img class="ui image" style="margin-top: 2rem;" src="" />
       
 
-      <article style="margin-top: 2rem;"><p>本文将介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器。</p>
+      <article style="margin-top: 2rem;"><p>本文主要介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器进行流量转发。</p>
 <h1 id="集群负载均衡分布式的区别与联系">集群、负载均衡、分布式的区别与联系</h1>
 <h2 id="集群">集群</h2>
 <p>集群是指同一种组件的多个实例形成的逻辑上的整体。即同一个系统，部署在多台服务器上，将多个服务器集中起来同时进行一种服务，
@@ -131,30 +131,30 @@
 通常，网络服务器应用程序接受了太多入网流量，以致无法迅速处理，这就需要将流量发送给在其它节点上运行的网络服务器应用。
 还可以根据每个节点上不同的可用资源或网络的特殊环境来进行优化。</p>
 <h1 id="spring-boot项目的部署">Spring Boot项目的部署</h1>
-<p>本次部署的Spring Boot项目中涉及到的mysql数据库以及redis缓存都在docker容器中，所以首先要将它们在docker中启动。</p>
+<p>本文介绍部署的Spring Boot项目使用docker容器中的mysql数据库以及redis，所以我们要将它们在docker容器中启动。</p>
 <ol>
 <li>启动<a href="https://hub.docker.com/_/mysql/">docker mysql</a>数据库：<code>docker run --restart=always -p 3306:3306 -e MYSQL_ROOT_PASSWORD=yourPassword -d mysql</code></li>
 <li>启动<a href="https://hub.docker.com/_/redis/">docker redis</a>缓存：<code>docker run -p 6379:6379 -d redis</code></li>
 <li>使用flyway进行数据迁移：<code>mvn flyway:migrate</code></li>
 </ol>
-<h2 id="maven插件exec部署">maven插件exec部署</h2>
+<h2 id="exec插件部署">exec插件部署</h2>
 <p>pom.xml文件配置：</p>
-<pre><code>&lt;plugin&gt;
-    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
-    &lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt;
-    &lt;version&gt;3.0.0&lt;/version&gt;
-    &lt;configuration&gt;
-        &lt;executable&gt;java&lt;/executable&gt;
-        &lt;arguments&gt;
-            &lt;argument&gt;-classpath&lt;/argument&gt;
-            &lt;!-- automatically creates the classpath using all project dependencies,
-                 also adding the project build directory --&gt;
-            &lt;classpath/&gt;
-            &lt;argument&gt;com.demo.test.Application&lt;/argument&gt; &lt;!--Spring Boot 项目启动的入口文件--&gt;
-        &lt;/arguments&gt;
-    &lt;/configuration&gt;
-&lt;/plugin&gt; &lt;!--maven exec plugin--&gt;
-</code></pre><ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;plugin&gt;</span>
+    <span style="color:#f92672">&lt;groupId&gt;</span>org.codehaus.mojo<span style="color:#f92672">&lt;/groupId&gt;</span>
+    <span style="color:#f92672">&lt;artifactId&gt;</span>exec-maven-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
+    <span style="color:#f92672">&lt;version&gt;</span>3.0.0<span style="color:#f92672">&lt;/version&gt;</span>
+    <span style="color:#f92672">&lt;configuration&gt;</span>
+        <span style="color:#f92672">&lt;executable&gt;</span>java<span style="color:#f92672">&lt;/executable&gt;</span>
+        <span style="color:#f92672">&lt;arguments&gt;</span>
+            <span style="color:#f92672">&lt;argument&gt;</span>-classpath<span style="color:#f92672">&lt;/argument&gt;</span>
+            <span style="color:#75715e">&lt;!-- automatically creates the classpath using all project dependencies,
+</span><span style="color:#75715e">                 also adding the project build directory --&gt;</span>
+            <span style="color:#f92672">&lt;classpath/&gt;</span>
+            <span style="color:#f92672">&lt;argument&gt;</span>com.demo.test.Application<span style="color:#f92672">&lt;/argument&gt;</span> <span style="color:#75715e">&lt;!--Spring Boot 项目启动的入口文件--&gt;</span>
+        <span style="color:#f92672">&lt;/arguments&gt;</span>
+    <span style="color:#f92672">&lt;/configuration&gt;</span>
+<span style="color:#f92672">&lt;/plugin&gt;</span> <span style="color:#75715e">&lt;!--maven exec plugin--&gt;</span>
+</code></pre></div><ol>
 <li>在pom文件中引入上述配置</li>
 <li>在控制台窗口执行<code>mvn exec:exec</code>即可部署该项目。</li>
 <li>或者在<code>cmd</code>窗口中奖路径设置到当前项目的根路径下后执行命令<code>mvn exec:exec</code>同样可以部署该项目。</li>
@@ -163,26 +163,28 @@
 <h2 id="jar包部署spring-boot项目">jar包部署Spring Boot项目</h2>
 <h3 id="生成jar文件">生成Jar文件</h3>
 <p>pom.xml文件配置：</p>
-<pre><code>&lt;plugin&gt;
-    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-    &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-    &lt;configuration&gt;
-        &lt;source&gt;1.8&lt;/source&gt;
-        &lt;target&gt;1.8&lt;/target&gt;
-    &lt;/configuration&gt;
-&lt;/plugin&gt;&lt;!--打jar包--&gt;
-&lt;plugin&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-    &lt;executions&gt;
-        &lt;execution&gt;
-            &lt;goals&gt;
-                &lt;goal&gt;repackage&lt;/goal&gt;
-            &lt;/goals&gt;
-        &lt;/execution&gt;
-    &lt;/executions&gt;
-&lt;/plugin&gt;&lt;!--打jar包--&gt;
-</code></pre><p>在pom文件中引入上述配置后在控制台窗口执行<code>mvn package</code>获取该项目的jar文件，该文件位于target目录下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;plugins&gt;</span>
+    <span style="color:#f92672">&lt;plugin&gt;</span>
+        <span style="color:#f92672">&lt;groupId&gt;</span>org.apache.maven.plugins<span style="color:#f92672">&lt;/groupId&gt;</span>
+        <span style="color:#f92672">&lt;artifactId&gt;</span>maven-compiler-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
+        <span style="color:#f92672">&lt;configuration&gt;</span>
+            <span style="color:#f92672">&lt;source&gt;</span>1.8<span style="color:#f92672">&lt;/source&gt;</span>
+            <span style="color:#f92672">&lt;target&gt;</span>1.8<span style="color:#f92672">&lt;/target&gt;</span>
+        <span style="color:#f92672">&lt;/configuration&gt;</span>
+    <span style="color:#f92672">&lt;/plugin&gt;</span><span style="color:#75715e">&lt;!--打jar包--&gt;</span>
+    <span style="color:#f92672">&lt;plugin&gt;</span>
+        <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
+        <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
+        <span style="color:#f92672">&lt;executions&gt;</span>
+            <span style="color:#f92672">&lt;execution&gt;</span>
+                <span style="color:#f92672">&lt;goals&gt;</span>
+                    <span style="color:#f92672">&lt;goal&gt;</span>repackage<span style="color:#f92672">&lt;/goal&gt;</span>
+                <span style="color:#f92672">&lt;/goals&gt;</span>
+            <span style="color:#f92672">&lt;/execution&gt;</span>
+        <span style="color:#f92672">&lt;/executions&gt;</span>
+    <span style="color:#f92672">&lt;/plugin&gt;</span><span style="color:#75715e">&lt;!--打jar包--&gt;</span>
+<span style="color:#f92672">&lt;/plugins&gt;</span>
+</code></pre></div><p>在pom文件中引入上述配置后在控制台窗口执行<code>mvn package</code>获取该项目的jar文件，该文件位于target目录下。</p>
 <h3 id="部署">部署</h3>
 <ol>
 <li>在控制台窗口将路径设置到target下，执行命令<code>java -Dserver.port=8081 -jar spring-boot-project-0.0.1.jar</code>即可部署该项目。</li>
@@ -190,20 +192,20 @@
 <li>-Dserver.port=8081 指令为了指定额外的端口号为8081(8080端口已经被前一个部署的项目占用)。</li>
 </ol>
 <h2 id="docker-部署">docker 部署</h2>
-<p>dockerfile文件内容</p>
-<pre><code>FROM java:openjdk-8u111-alpine
-
-RUN mkdir /app
-
-WORKDIR /app
-
-COPY target/spring-boot-project-0.0.1.jar /app
-
-EXPOSE 8080
-
-CMD [&quot;java&quot;,&quot;-jar&quot;,&quot;spring-boot-project-0.0.1.jar&quot;]
-
-</code></pre><ol>
+<p>Dockerfile文件内容：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> java:openjdk-8u111-alpine</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> mkdir /app<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> target/spring-boot-project-0.0.1.jar /app<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8080</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;java&#34;</span>,<span style="color:#e6db74">&#34;-jar&#34;</span>,<span style="color:#e6db74">&#34;spring-boot-project-0.0.1.jar&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><ol>
 <li>配置好dockerfile文件后通过<code>docker build .</code>将该项目制作成images。</li>
 <li>通过<code>docker images</code> 查看当前容器中的镜像，找到刚刚制作的镜像的ID。</li>
 <li>通过<code>docker run --restart=always --name=mySpringBootApp -p 8082:8080 -d &lt;镜像id&gt;</code> 启动该镜像
