@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="小叽">
+  <meta name="description" content="我的学习记录">
+  <meta name="keywords" content="java">
+  
+  <link rel="prev" href="http://jmh1234.github.io/2020/try-catch-finally-return/" />
+  
+  <link rel="canonical" href="http://jmh1234.github.io/2020/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Spring Boot项目部署以及负载均衡 | jimh的博客
+       
+  </title>
+  <meta name="title" content="Spring Boot项目部署以及负载均衡 | jimh的博客">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/jmh1234.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "Spring Boot项目部署以及负载均衡",
+    "headline" : "Spring Boot项目部署以及负载均衡",
+    "description" : "\u003cp\u003e本文主要介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器进行流量转发。\u003c\/p\u003e",
+    "inLanguage" : "zh-Hans",
+    "author" : "小叽",
+    "creator" : "小叽",
+    "publisher": "小叽",
+    "accountablePerson" : "小叽",
+    "copyrightHolder" : "小叽",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-08-26 14:07:45 \u002b0800 CST",
+    "dateModified" : "2020-08-26 14:07:45 \u002b0800 CST",
+    "url" : "http:\/\/jmh1234.github.io\/2020\/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1\/",
+    "wordCount" : "191",
+    "keywords" : [  "jimh的博客"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://jmh1234.github.io/">jimh的博客</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://jmh1234.github.io/">jimh的博客</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Spring Boot项目部署以及负载均衡</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://jmh1234.github.io/" rel="author">小叽</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-08-26 itemprop="datePublished">August 26, 2020</time>
+                </span>
+                in
+                
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>本文主要介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器进行流量转发。</p>
+<h1 id="集群负载均衡分布式的区别与联系">集群、负载均衡、分布式的区别与联系</h1>
+<h2 id="集群">集群</h2>
+<p>集群是指同一种组件的多个实例形成的逻辑上的整体。即同一个系统，部署在多台服务器上，将多个服务器集中起来同时进行一种服务，
+在客户端看来就像是只有一个服务器，而且其中的一个节点挂了不影响其他节点的对外提供服务。</p>
+<h2 id="分布式">分布式</h2>
+<p>分布式是指通过网络连接的多个组件，为了完成共同的任务而通过交换信息协作的计算机节点组成的系统。
+将一个大的业务拆分成多个小的业务分别部署到不同的服务器上。其目的是利用更多的机器，处理更多的数据。</p>
+<h2 id="负载均衡">负载均衡</h2>
+<p>负载均衡是指将请求分摊到多个操作单元也就是分开部署的服务器上，Nginx是常用的反向代理服务器，可以用来做负载均衡。</p>
+<h2 id="负载均衡集群">负载均衡集群</h2>
+<p>负载均衡集群为企业需求提供了更实用的系统。如名称所暗示，该系统使负载(流量)可以在计算机集群中尽可能平均分摊处理，这样的系统非常适合于运行同一组应用程序的大量用户。
+每个节点都可以处理一部分负载，并且可以在节点之间动态分配负载，以实现平衡，对于网络流量也是如此。
+通常，网络服务器应用程序接受了太多入网流量，以致无法迅速处理，这就需要将流量发送给在其它节点上运行的网络服务器应用。
+还可以根据每个节点上不同的可用资源或网络的特殊环境来进行优化。</p>
+<h1 id="spring-boot项目的部署">Spring Boot项目的部署</h1>
+<p>本文介绍部署的Spring Boot项目使用docker容器中的mysql数据库以及redis，所以我们要将它们在docker容器中启动。</p>
+<ol>
+<li>启动<a href="https://hub.docker.com/_/mysql/">docker mysql</a>数据库：<code>docker run --restart=always -p 3306:3306 -e MYSQL_ROOT_PASSWORD=yourPassword -d mysql</code></li>
+<li>启动<a href="https://hub.docker.com/_/redis/">docker redis</a>缓存：<code>docker run -p 6379:6379 -d redis</code></li>
+<li>使用flyway进行数据迁移：<code>mvn flyway:migrate</code></li>
+</ol>
+<h2 id="exec插件部署">exec插件部署</h2>
+<p>pom.xml文件配置：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;plugin&gt;</span>
+    <span style="color:#f92672">&lt;groupId&gt;</span>org.codehaus.mojo<span style="color:#f92672">&lt;/groupId&gt;</span>
+    <span style="color:#f92672">&lt;artifactId&gt;</span>exec-maven-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
+    <span style="color:#f92672">&lt;version&gt;</span>3.0.0<span style="color:#f92672">&lt;/version&gt;</span>
+    <span style="color:#f92672">&lt;configuration&gt;</span>
+        <span style="color:#f92672">&lt;executable&gt;</span>java<span style="color:#f92672">&lt;/executable&gt;</span>
+        <span style="color:#f92672">&lt;arguments&gt;</span>
+            <span style="color:#f92672">&lt;argument&gt;</span>-classpath<span style="color:#f92672">&lt;/argument&gt;</span>
+            <span style="color:#75715e">&lt;!-- automatically creates the classpath using all project dependencies,
+</span><span style="color:#75715e">                 also adding the project build directory --&gt;</span>
+            <span style="color:#f92672">&lt;classpath/&gt;</span>
+            <span style="color:#f92672">&lt;argument&gt;</span>com.demo.test.Application<span style="color:#f92672">&lt;/argument&gt;</span> <span style="color:#75715e">&lt;!--Spring Boot 项目启动的入口文件--&gt;</span>
+        <span style="color:#f92672">&lt;/arguments&gt;</span>
+    <span style="color:#f92672">&lt;/configuration&gt;</span>
+<span style="color:#f92672">&lt;/plugin&gt;</span> <span style="color:#75715e">&lt;!--maven exec plugin--&gt;</span>
+</code></pre></div><ol>
+<li>在pom文件中引入上述配置</li>
+<li>在控制台窗口执行<code>mvn exec:exec</code>即可部署该项目。</li>
+<li>或者在<code>cmd</code>窗口中奖路径设置到当前项目的根路径下后执行命令<code>mvn exec:exec</code>同样可以部署该项目。</li>
+<li>该项目的默认端口号为8080</li>
+</ol>
+<h2 id="jar包部署spring-boot项目">jar包部署Spring Boot项目</h2>
+<h3 id="生成jar文件">生成Jar文件</h3>
+<p>pom.xml文件配置：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;plugins&gt;</span>
+    <span style="color:#f92672">&lt;plugin&gt;</span>
+        <span style="color:#f92672">&lt;groupId&gt;</span>org.apache.maven.plugins<span style="color:#f92672">&lt;/groupId&gt;</span>
+        <span style="color:#f92672">&lt;artifactId&gt;</span>maven-compiler-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
+        <span style="color:#f92672">&lt;configuration&gt;</span>
+            <span style="color:#f92672">&lt;source&gt;</span>1.8<span style="color:#f92672">&lt;/source&gt;</span>
+            <span style="color:#f92672">&lt;target&gt;</span>1.8<span style="color:#f92672">&lt;/target&gt;</span>
+        <span style="color:#f92672">&lt;/configuration&gt;</span>
+    <span style="color:#f92672">&lt;/plugin&gt;</span><span style="color:#75715e">&lt;!--打jar包--&gt;</span>
+    <span style="color:#f92672">&lt;plugin&gt;</span>
+        <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
+        <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
+        <span style="color:#f92672">&lt;executions&gt;</span>
+            <span style="color:#f92672">&lt;execution&gt;</span>
+                <span style="color:#f92672">&lt;goals&gt;</span>
+                    <span style="color:#f92672">&lt;goal&gt;</span>repackage<span style="color:#f92672">&lt;/goal&gt;</span>
+                <span style="color:#f92672">&lt;/goals&gt;</span>
+            <span style="color:#f92672">&lt;/execution&gt;</span>
+        <span style="color:#f92672">&lt;/executions&gt;</span>
+    <span style="color:#f92672">&lt;/plugin&gt;</span><span style="color:#75715e">&lt;!--打jar包--&gt;</span>
+<span style="color:#f92672">&lt;/plugins&gt;</span>
+</code></pre></div><p>在pom文件中引入上述配置后在控制台窗口执行<code>mvn package</code>获取该项目的jar文件，该文件位于target目录下。</p>
+<h3 id="部署">部署</h3>
+<ol>
+<li>在控制台窗口将路径设置到target下，执行命令<code>java -Dserver.port=8081 -jar spring-boot-project-0.0.1.jar</code>即可部署该项目。</li>
+<li>或者在<code>cmd</code>窗口中将路径设置到当前项目的target目录下，执行命令<code>java -Dserver.port=8081 -jar spring-boot-project-0.0.1.jar</code>同样可以部署该项目。</li>
+<li>-Dserver.port=8081 指令为了指定额外的端口号为8081(8080端口已经被前一个部署的项目占用)。</li>
+</ol>
+<h2 id="docker-部署">docker 部署</h2>
+<p>Dockerfile文件内容：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> java:openjdk-8u111-alpine</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> mkdir /app<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> target/spring-boot-project-0.0.1.jar /app<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8080</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;java&#34;</span>,<span style="color:#e6db74">&#34;-jar&#34;</span>,<span style="color:#e6db74">&#34;spring-boot-project-0.0.1.jar&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><ol>
+<li>配置好dockerfile文件后通过<code>docker build .</code>将该项目制作成images。</li>
+<li>通过<code>docker images</code> 查看当前容器中的镜像，找到刚刚制作的镜像的ID。</li>
+<li>通过<code>docker run --restart=always --name=mySpringBootApp -p 8082:8080 -d &lt;镜像id&gt;</code> 启动该镜像
+ps：docker可以看做是一台独立的计算机要时刻注意ip地址的问题。</li>
+</ol>
+<h2 id="nginx流量转发">Nginx流量转发</h2>
+<p>docker nginx官网：<a href="https://hub.docker.com/_/nginx/">https://hub.docker.com/_/nginx/</a></p>
+<p>外部 nginx.conf 文件配置:</p>
+<pre><code>events{ }
+
+http {
+    upstream myapp1 {
+        server 192.168.1.164:8080;
+        server 192.168.1.164:8081;
+        server 192.168.99.100:8082;
+    }
+
+    server {
+        listen 80;
+
+        location / {
+            proxy_pass http://myapp1;
+        }
+    }
+}
+</code></pre><ol>
+<li>其中192.168.1.164路由器分配给为宿主机的ip地址，192.168.99.100为docker容器的地址。</li>
+<li>Nginx监听80端口，将流量均匀的转发给myapp1中的三个服务。其中8080通过exec插件部署、8081通过jar文件方式部署、8082通过docker部署。</li>
+<li>启动Nginx：docker run -v &ldquo;$(pwd)&quot;/nginx.conf:/etc/nginx/nginx.conf:ro -p 80:80 -d nginx(当前的文件路径(pwd)为C:\Users\用户\tmp)</li>
+<li>Nginx启动成功后就可以通过 192.168.99.100 + 后台服务接口名称访问项目</li>
+</ol>
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>小叽 </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://jmh1234.github.io/2020/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/>http://jmh1234.github.io/2020/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://jmh1234.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://jmh1234.github.io/2020/try-catch-finally-return/" class="prev" rel="prev" title="try catch finally return"><i class="iconfont icon-left"></i>&nbsp;try catch finally return</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2020 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://jmh1234.github.io/">小叽</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
