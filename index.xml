@@ -1,50 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>jimh的博客</title>
+    <title>jimh的博客 on jimh的博客</title>
     <link>http://jmh1234.github.io/</link>
-    <description>Recent content on jimh的博客</description>
+    <description>Recent content in jimh的博客 on jimh的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <lastBuildDate>Wed, 26 Aug 2020 14:07:45 +0800</lastBuildDate>
-    
-	<atom:link href="http://jmh1234.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Spring Boot项目部署以及负载均衡</title>
-      <link>http://jmh1234.github.io/posts/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</link>
+      <title>Posts</title>
+      <link>http://jmh1234.github.io/posts/</link>
       <pubDate>Wed, 26 Aug 2020 14:07:45 +0800</pubDate>
       
-      <guid>http://jmh1234.github.io/posts/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</guid>
-      <description>&lt;p&gt;本文主要介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器进行流量转发。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>try catch finally return</title>
-      <link>http://jmh1234.github.io/posts/try-catch-finally-return/</link>
-      <pubDate>Wed, 26 Aug 2020 14:07:45 +0800</pubDate>
-      
-      <guid>http://jmh1234.github.io/posts/try-catch-finally-return/</guid>
-      <description>&lt;p&gt;本文将介绍有return的情况下try catch finally的执行顺序。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>泛型</title>
-      <link>http://jmh1234.github.io/posts/%E6%B3%9B%E5%9E%8B/</link>
-      <pubDate>Wed, 26 Aug 2020 11:05:18 +0800</pubDate>
-      
-      <guid>http://jmh1234.github.io/posts/%E6%B3%9B%E5%9E%8B/</guid>
-      <description>&lt;p&gt;Java语言中泛型是“假”泛型！！！&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Hugo</title>
-      <link>http://jmh1234.github.io/posts/hugo/</link>
-      <pubDate>Fri, 21 Aug 2020 11:05:18 +0800</pubDate>
-      
-      <guid>http://jmh1234.github.io/posts/hugo/</guid>
-      <description>&lt;p&gt;Hugo是一个由Go语言实现的静态页面生成器，是世界上最快的博客生成器。&lt;/p&gt;</description>
+      <guid>http://jmh1234.github.io/posts/</guid>
+      <description></description>
     </item>
     
   </channel>
