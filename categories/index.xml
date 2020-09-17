@@ -6,9 +6,46 @@
     <description>Recent content in Categories on jimh的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
+    <lastBuildDate>Sat, 05 Sep 2020 11:05:18 +0800</lastBuildDate>
     
 	<atom:link href="http://jmh1234.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java</title>
+      <link>http://jmh1234.github.io/categories/java/</link>
+      <pubDate>Sat, 05 Sep 2020 11:05:18 +0800</pubDate>
+      
+      <guid>http://jmh1234.github.io/categories/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nginx</title>
+      <link>http://jmh1234.github.io/categories/nginx/</link>
+      <pubDate>Fri, 28 Aug 2020 10:07:45 +0800</pubDate>
+      
+      <guid>http://jmh1234.github.io/categories/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring Boot</title>
+      <link>http://jmh1234.github.io/categories/spring-boot/</link>
+      <pubDate>Fri, 28 Aug 2020 10:07:45 +0800</pubDate>
+      
+      <guid>http://jmh1234.github.io/categories/spring-boot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>http://jmh1234.github.io/categories/blog/</link>
+      <pubDate>Fri, 21 Aug 2020 11:05:18 +0800</pubDate>
+      
+      <guid>http://jmh1234.github.io/categories/blog/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

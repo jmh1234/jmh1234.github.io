@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog on jimh的博客</title>
+    <link>http://jmh1234.github.io/categories/blog/</link>
+    <description>Recent content in blog on jimh的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Fri, 21 Aug 2020 11:05:18 +0800</lastBuildDate>
+    
+	<atom:link href="http://jmh1234.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo博客搭建</title>
+      <link>http://jmh1234.github.io/2020/hugo/</link>
+      <pubDate>Fri, 21 Aug 2020 11:05:18 +0800</pubDate>
+      
+      <guid>http://jmh1234.github.io/2020/hugo/</guid>
+      <description>&lt;p&gt;Hugo是一个由Go语言实现的静态页面生成器，是世界上最快的博客生成器。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
