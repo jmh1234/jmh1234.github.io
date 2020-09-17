@@ -6,17 +6,26 @@
     <description>Recent content in Java on jimh的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Sat, 05 Sep 2020 11:05:18 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2020 11:52:23 +0800</lastBuildDate>
     
 	<atom:link href="http://jmh1234.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>泛型</title>
-      <link>http://jmh1234.github.io/2020/%E6%B3%9B%E5%9E%8B/</link>
+      <title>HashMap详解</title>
+      <link>http://jmh1234.github.io/2020/hashmap%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Thu, 17 Sep 2020 11:52:23 +0800</pubDate>
+      
+      <guid>http://jmh1234.github.io/2020/hashmap%E8%AF%A6%E8%A7%A3/</guid>
+      <description>&lt;p&gt;本文解析HashMap的源码中的一些常见的问题，以及JDK1.7和JDK1.8中的差异。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>genericity</title>
+      <link>http://jmh1234.github.io/2020/genericity/</link>
       <pubDate>Sat, 05 Sep 2020 11:05:18 +0800</pubDate>
       
-      <guid>http://jmh1234.github.io/2020/%E6%B3%9B%E5%9E%8B/</guid>
+      <guid>http://jmh1234.github.io/2020/genericity/</guid>
       <description>&lt;p&gt;Java语言中泛型是“假”泛型！！！&lt;/p&gt;</description>
     </item>
     
