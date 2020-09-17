@@ -30,12 +30,12 @@
     </item>
     
     <item>
-      <title>try catch finally return</title>
+      <title>try-catch-finally-return</title>
       <link>http://jmh1234.github.io/2020/try-catch-finally-return/</link>
       <pubDate>Sun, 30 Aug 2020 18:07:45 +0800</pubDate>
       
       <guid>http://jmh1234.github.io/2020/try-catch-finally-return/</guid>
-      <description>&lt;p&gt;本文将介绍有return的情况下try catch finally的执行顺序。&lt;/p&gt;</description>
+      <description>&lt;p&gt;本文将介绍有return的情况下try-catch-finally的执行顺序。&lt;/p&gt;</description>
     </item>
     
     <item>
