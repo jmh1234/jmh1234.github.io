@@ -57,7 +57,7 @@
     "datePublished": "2020-09-05 11:05:18 \u002b0800 CST",
     "dateModified" : "2020-09-05 11:05:18 \u002b0800 CST",
     "url" : "http:\/\/jmh1234.github.io\/2020\/genericity\/",
-    "wordCount" : "145",
+    "wordCount" : "163",
     "keywords" : [ "Java", "jimh的博客"]
 }
 </script>
@@ -148,9 +148,9 @@
 各种程序设计语言和其编译器、运行环境对泛型的支持均不一样。
 将类型参数化以达到代码复用提高软件开发工作效率的一种数据类型。泛型类是引用类型，是堆对象，主要是引入了类型参数这个概念。</p>
 <h1 id="没有泛型的java">没有泛型的Java</h1>
-<p>其实，在远古时代(java5之前)Java是没有泛型的。<br>
+<p>其实，在远古时代 (java5之前)Java 是没有泛型的。<br>
 在没有泛型的年代我们只能通过自定义的“StringList”类来实现类型安全。<br>
-自定义StringList实现：</p>
+自定义 StringList 实现：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         StringList stringList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringList<span style="color:#f92672">();</span>
@@ -175,12 +175,12 @@
         <span style="color:#f92672">}</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><p>可想而知，如果需要一个Integer类型的就要把上面的代码复制一般定义一个IntegerList，
-需要一个String[]类型的就要定义一个StringArrList，需要。。。。。。<br>
+</code></pre></div><p>可想而知，如果需要一个 Integer 类型的就要把上面的代码复制一般定义一个IntegerList，
+需要一个 String[] 类型的就要定义一个 StringArrList，需要。。。。。。<br>
 这样想想就很可怕。。。如果不这样做你根本不知道取出来的元素是什么类型的，这样对于后面的操作可能会很头疼。</p>
 <h1 id="泛型出现">泛型出现</h1>
 <p>泛型程序设计（Generic Programming）意味着编写的代码可以被很多不同类型的对象所重用。</p>
-<p>自从泛型出现我们就可以用省⼒的方法编写类型安全的代码，并且可以舒服的使用<code>List&lt;String&gt;</code>、<code>List&lt;Integer&gt;</code>等等。</p>
+<p>自从泛型出现我们就可以用省⼒的方法编写类型安全的代码，并且可以舒服的使用 <code>List&lt;String&gt;</code>、<code>List&lt;Integer&gt;</code> 等等。</p>
 <h2 id="向后兼容">向后兼容</h2>
 <p>但是这样仍然存在问题，为了保证向后兼容性，只有两条路可以选择：</p>
 <ol>
@@ -188,15 +188,15 @@
 <li>搞一套全新的API -&gt; C#的选择</li>
 </ol>
 <h2 id="擦除带来的问题">擦除带来的问题</h2>
-<p>擦除导致Java中的泛型只存在编译期间，在运行期间完全不保留
-所以说Java泛型是“假”泛型、伪泛型，是编译时期泛型。简单来讲，在运行时(在编译后的字节码文件中)，所有的泛型都是object。<br>
+<p>擦除导致 Java 中的泛型只存在编译期间，在运行期间完全不保留
+所以说 Java 泛型是“假”泛型、伪泛型，是编译时期泛型。简单来讲，在运行时(在编译后的字节码文件中)，所有的泛型都是object。<br>
 可以通过反射绕过编译器的检测：</p>
 <pre><code>//通过反射绕过泛型检查，即泛型擦除
 Class&lt;ArrayList&gt; listClass = ArrayList.class;
 Method addMethod = listClass.getMethod(&quot;add&quot;, Object.class);
 //编译器不再报错，程序也可以正常执行
 addMethod.invoke(list, &quot;a&quot;);
-</code></pre><p>注意：<code>List&lt;String&gt;</code>不是<code>List&lt;Object&gt;</code>的子类。</p>
+</code></pre><p>注意：<code>List&lt;String&gt;</code> 不是 <code>List&lt;Object&gt;</code> 的子类。</p>
 <h2 id="泛型的限定符">泛型的限定符</h2>
 <ol>
 <li>? extends 要求泛型是某种类型及其⼦子类型</li>

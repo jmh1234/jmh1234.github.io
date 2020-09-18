@@ -6,7 +6,7 @@
     <description>Recent content in Categories on jimh的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 17 Sep 2020 11:52:23 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2020 15:26:08 +0800</lastBuildDate>
     
 	<atom:link href="http://jmh1234.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>Java</title>
       <link>http://jmh1234.github.io/categories/java/</link>
-      <pubDate>Thu, 17 Sep 2020 11:52:23 +0800</pubDate>
+      <pubDate>Fri, 18 Sep 2020 15:26:08 +0800</pubDate>
       
       <guid>http://jmh1234.github.io/categories/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JVM</title>
+      <link>http://jmh1234.github.io/categories/jvm/</link>
+      <pubDate>Fri, 18 Sep 2020 15:26:08 +0800</pubDate>
+      
+      <guid>http://jmh1234.github.io/categories/jvm/</guid>
       <description></description>
     </item>
     

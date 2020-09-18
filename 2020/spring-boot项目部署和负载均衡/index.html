@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "Spring Boot项目部署以及负载均衡",
     "headline" : "Spring Boot项目部署以及负载均衡",
-    "description" : "\u003cp\u003e本文主要介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器进行流量转发。\u003c\/p\u003e",
+    "description" : "\u003cp\u003e本文主要介绍Spring Boot 项目的三种部署方式以及使用 Nginx 作为负载均衡器进行流量转发。\u003c\/p\u003e",
     "inLanguage" : "zh-Hans",
     "author" : "小叽",
     "creator" : "小叽",
@@ -57,7 +57,7 @@
     "datePublished": "2020-08-28 10:07:45 \u002b0800 CST",
     "dateModified" : "2020-08-28 10:07:45 \u002b0800 CST",
     "url" : "http:\/\/jmh1234.github.io\/2020\/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1\/",
-    "wordCount" : "191",
+    "wordCount" : "235",
     "keywords" : [ "Java","Nginx","Spring Boot", "jimh的博客"]
 }
 </script>
@@ -144,7 +144,7 @@
           
           
 
-          <p>本文主要介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器进行流量转发。</p>
+          <p>本文主要介绍Spring Boot 项目的三种部署方式以及使用 Nginx 作为负载均衡器进行流量转发。</p>
 <h1 id="集群负载均衡分布式的区别与联系">集群、负载均衡、分布式的区别与联系</h1>
 <h2 id="集群">集群</h2>
 <p>集群是指同一种组件的多个实例形成的逻辑上的整体。即同一个系统，部署在多台服务器上，将多个服务器集中起来同时进行一种服务，
@@ -153,14 +153,14 @@
 <p>分布式是指通过网络连接的多个组件，为了完成共同的任务而通过交换信息协作的计算机节点组成的系统。
 将一个大的业务拆分成多个小的业务分别部署到不同的服务器上。其目的是利用更多的机器，处理更多的数据。</p>
 <h2 id="负载均衡">负载均衡</h2>
-<p>负载均衡是指将请求分摊到多个操作单元也就是分开部署的服务器上，Nginx是常用的反向代理服务器，可以用来做负载均衡。</p>
+<p>负载均衡是指将请求分摊到多个操作单元也就是分开部署的服务器上，Nginx 是常用的反向代理服务器，可以用来做负载均衡。</p>
 <h2 id="负载均衡集群">负载均衡集群</h2>
 <p>负载均衡集群为企业需求提供了更实用的系统。如名称所暗示，该系统使负载(流量)可以在计算机集群中尽可能平均分摊处理，这样的系统非常适合于运行同一组应用程序的大量用户。
 每个节点都可以处理一部分负载，并且可以在节点之间动态分配负载，以实现平衡，对于网络流量也是如此。
 通常，网络服务器应用程序接受了太多入网流量，以致无法迅速处理，这就需要将流量发送给在其它节点上运行的网络服务器应用。
 还可以根据每个节点上不同的可用资源或网络的特殊环境来进行优化。</p>
 <h1 id="spring-boot项目的部署">Spring Boot项目的部署</h1>
-<p>本文介绍部署的Spring Boot项目使用docker容器中的mysql数据库以及redis，所以我们要将它们在docker容器中启动。</p>
+<p>本文介绍部署的Spring Boot项目使用 docker 容器中的 mysql 数据库以及 redis，所以我们要将它们在docker容器中启动。</p>
 <ol>
 <li>启动<a href="https://hub.docker.com/_/mysql/">docker mysql</a>数据库：<code>docker run --restart=always -p 3306:3306 -e MYSQL_ROOT_PASSWORD=yourPassword -d mysql</code></li>
 <li>启动<a href="https://hub.docker.com/_/redis/">docker redis</a>缓存：<code>docker run -p 6379:6379 -d redis</code></li>
@@ -184,9 +184,9 @@
     <span style="color:#f92672">&lt;/configuration&gt;</span>
 <span style="color:#f92672">&lt;/plugin&gt;</span> <span style="color:#75715e">&lt;!--maven exec plugin--&gt;</span>
 </code></pre></div><ol>
-<li>在pom文件中引入上述配置</li>
-<li>在控制台窗口执行<code>mvn exec:exec</code>即可部署该项目。</li>
-<li>或者在<code>cmd</code>窗口中奖路径设置到当前项目的根路径下后执行命令<code>mvn exec:exec</code>同样可以部署该项目。</li>
+<li>在 pom 文件中引入上述配置</li>
+<li>在控制台窗口执行 <code>mvn exec:exec</code> 即可部署该项目。</li>
+<li>或者在 <code>cmd</code> 窗口中奖路径设置到当前项目的根路径下后执行命令 <code>mvn exec:exec</code> 同样可以部署该项目。</li>
 <li>该项目的默认端口号为8080</li>
 </ol>
 <h2 id="jar包部署spring-boot项目">jar包部署Spring Boot项目</h2>
@@ -213,11 +213,11 @@
         <span style="color:#f92672">&lt;/executions&gt;</span>
     <span style="color:#f92672">&lt;/plugin&gt;</span><span style="color:#75715e">&lt;!--打jar包--&gt;</span>
 <span style="color:#f92672">&lt;/plugins&gt;</span>
-</code></pre></div><p>在pom文件中引入上述配置后在控制台窗口执行<code>mvn package</code>获取该项目的jar文件，该文件位于target目录下。</p>
+</code></pre></div><p>在pom文件中引入上述配置后在控制台窗口执行 <code>mvn package</code> 获取该项目的jar文件，该文件位于 target 目录下。</p>
 <h3 id="部署">部署</h3>
 <ol>
-<li>在控制台窗口将路径设置到target下，执行命令<code>java -Dserver.port=8081 -jar spring-boot-project-0.0.1.jar</code>即可部署该项目。</li>
-<li>或者在<code>cmd</code>窗口中将路径设置到当前项目的target目录下，执行命令<code>java -Dserver.port=8081 -jar spring-boot-project-0.0.1.jar</code>同样可以部署该项目。</li>
+<li>在控制台窗口将路径设置到 target 下，执行命令 <code>java -Dserver.port=8081 -jar spring-boot-project-0.0.1.jar</code> 即可部署该项目。</li>
+<li>或者在 <code>cmd</code> 窗口中将路径设置到当前项目的 target 目录下，执行命令 <code>java -Dserver.port=8081 -jar spring-boot-project-0.0.1.jar</code> 同样可以部署该项目。</li>
 <li>-Dserver.port=8081 指令为了指定额外的端口号为8081(8080端口已经被前一个部署的项目占用)。</li>
 </ol>
 <h2 id="docker-部署">docker 部署</h2>
@@ -235,12 +235,12 @@
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;java&#34;</span>,<span style="color:#e6db74">&#34;-jar&#34;</span>,<span style="color:#e6db74">&#34;spring-boot-project-0.0.1.jar&#34;</span>]<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><ol>
-<li>配置好dockerfile文件后通过<code>docker build .</code>将该项目制作成images。</li>
-<li>通过<code>docker images</code> 查看当前容器中的镜像，找到刚刚制作的镜像的ID。</li>
-<li>通过<code>docker run --restart=always --name=mySpringBootApp -p 8082:8080 -d &lt;镜像id&gt;</code> 启动该镜像
+<li>配置好 dockerfile 文件后通过 <code>docker build .</code> 将该项目制作成images。</li>
+<li>通过 <code>docker images</code> 查看当前容器中的镜像，找到刚刚制作的镜像的ID。</li>
+<li>通过 <code>docker run --restart=always --name=mySpringBootApp -p 8082:8080 -d &lt;镜像id&gt;</code> 启动该镜像
 ps：docker可以看做是一台独立的计算机要时刻注意ip地址的问题。</li>
 </ol>
-<h2 id="nginx流量转发">Nginx流量转发</h2>
+<h2 id="nginx-流量转发">Nginx 流量转发</h2>
 <p>docker nginx官网：<a href="https://hub.docker.com/_/nginx/">https://hub.docker.com/_/nginx/</a></p>
 <p>外部 nginx.conf 文件配置:</p>
 <pre><code>events{ }
@@ -262,9 +262,9 @@ http {
 }
 </code></pre><ol>
 <li>其中192.168.1.164路由器分配给为宿主机的ip地址，192.168.99.100为docker容器的地址。</li>
-<li>Nginx监听80端口，将流量均匀的转发给myapp1中的三个服务。其中8080通过exec插件部署、8081通过jar文件方式部署、8082通过docker部署。</li>
-<li>启动Nginx：docker run -v &ldquo;$(pwd)&quot;/nginx.conf:/etc/nginx/nginx.conf:ro -p 80:80 -d nginx(当前的文件路径(pwd)为C:\Users\用户\tmp)</li>
-<li>Nginx启动成功后就可以通过 192.168.99.100 + 后台服务接口名称访问项目</li>
+<li>Nginx 监听80端口，将流量均匀的转发给 myapp1 中的三个服务。其中8080通过exec插件部署、8081通过jar文件方式部署、8082通过docker部署。</li>
+<li>启动 Nginx：<code>docker run -v &quot;$(pwd)&quot;/nginx.conf:/etc/nginx/nginx.conf:ro -p 80:80 -d nginx</code> (当前的文件路径(pwd)为C:\Users\用户\tmp)</li>
+<li>Nginx 启动成功后就可以通过 192.168.99.100(主机地址) + 后台服务接口名称访问项目</li>
 </ol>
     </div>
 

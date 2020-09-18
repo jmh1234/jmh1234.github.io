@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="小叽">
+  <meta name="description" content="我的学习记录">
+  <meta name="keywords" content="java">
+  
+  <link rel="prev" href="http://jmh1234.github.io/2020/hashmap%E8%AF%A6%E8%A7%A3/" />
+  
+  <link rel="canonical" href="http://jmh1234.github.io/2020/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Java内存区域与内存溢出 | jimh的博客
+       
+  </title>
+  <meta name="title" content="Java内存区域与内存溢出 | jimh的博客">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/jmh1234.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "Java内存区域与内存溢出",
+    "headline" : "Java内存区域与内存溢出",
+    "description" : "\u003cp\u003eJava 和 C\u002b\u002b 之间有一堵由内存分配和垃圾收集技术所围成的“高墙”，墙外的想进去，墙内的人想出去\u003cbr\u003e\n                                                                                                                                 《深入理解Java虚拟机》\u003c\/p\u003e",
+    "inLanguage" : "zh-Hans",
+    "author" : "小叽",
+    "creator" : "小叽",
+    "publisher": "小叽",
+    "accountablePerson" : "小叽",
+    "copyrightHolder" : "小叽",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-09-18 15:26:08 \u002b0800 CST",
+    "dateModified" : "2020-09-18 15:26:08 \u002b0800 CST",
+    "url" : "http:\/\/jmh1234.github.io\/2020\/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA\/",
+    "wordCount" : "34",
+    "keywords" : [ "Java","JVM", "jimh的博客"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://jmh1234.github.io/">jimh的博客</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://jmh1234.github.io/">jimh的博客</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Java内存区域与内存溢出</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://jmh1234.github.io/" rel="author">小叽</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-09-18 itemprop="datePublished">September 18, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://jmh1234.github.io/categories/java/"> Java </a>
+                        <a href="http://jmh1234.github.io/categories/jvm/"> JVM </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>Java 和 C++ 之间有一堵由内存分配和垃圾收集技术所围成的“高墙”，墙外的想进去，墙内的人想出去<br>
+                                                                                                                                 《深入理解Java虚拟机》</p>
+<h1 id="概述">概述</h1>
+<p>对于 C、C++ 的程序开发人员来说，在内存管理领域，他们既是拥有最高权力的“皇帝”又是从事最基础劳动的“劳动人民”——既拥有对象的“所有权”，
+又担负着每一个对象生命开始到终结的维护责任。<br>
+对于 Java 程序员来说，在虚拟机自动内存管理机制的帮助下，不再需要为每一个 new 操作去写配对的 delete/free 代码，不容易出现内存泄露和内存溢出问题，
+由虚拟机管理内存这一切看起来都挺美好。不过也正是 Java 程序员把内存控制的权利交给了Java虚拟机，使得排查问题变得很困难。</p>
+<h1 id="运行时数据区">运行时数据区</h1>
+<p>Java虚拟机在执行Java程序的过程中会把他管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建时间和销毁时间，有的区域随着虚拟机进程启动二存在，
+有的区域则依赖用户线程的启动和结束而建立和销毁。</p>
+<h2 id="程序计数器">程序计数器</h2>
+<p>程序计数器(Program Counter Register) 是一块较小的内存空间，它可以看做时当前线程所执行的字节码的行数指示器。在虚拟机的概念模型里，
+字节码解释器工作时就是通过改变这个计数器的值来选取下一条需执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能操作都依赖这个计数器来完成。
+每条线程都需要有一个独立的程序计数器，各条线程之间的程序计数器互不影响，独立存储。这类内存称为“线程私有”的内存</p>
+<h2 id="java虚拟机栈">Java虚拟机栈</h2>
+<p>与程序计数器一样，Java虚拟机栈也是线程私有的，它的生命周期和线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧(Stack Frame)
+用于存储局部变量表、操作数栈、动态链接、方法出入口等信息。每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程</p>
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>小叽 </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://jmh1234.github.io/2020/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/>http://jmh1234.github.io/2020/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://jmh1234.github.io/tags/java/">
+                    #Java</a></span>
+            
+            <span class="tag"><a href="http://jmh1234.github.io/tags/jvm/">
+                    #JVM</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://jmh1234.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://jmh1234.github.io/2020/hashmap%E8%AF%A6%E8%A7%A3/" class="prev" rel="prev" title="HashMap详解"><i class="iconfont icon-left"></i>&nbsp;HashMap详解</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2020 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://jmh1234.github.io/">小叽</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

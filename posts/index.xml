@@ -6,10 +6,20 @@
     <description>Recent content in Posts on jimh的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 17 Sep 2020 11:52:23 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2020 15:26:08 +0800</lastBuildDate>
     
 	<atom:link href="http://jmh1234.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java内存区域与内存溢出</title>
+      <link>http://jmh1234.github.io/2020/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/</link>
+      <pubDate>Fri, 18 Sep 2020 15:26:08 +0800</pubDate>
+      
+      <guid>http://jmh1234.github.io/2020/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/</guid>
+      <description>&lt;p&gt;Java 和 C++ 之间有一堵由内存分配和垃圾收集技术所围成的“高墙”，墙外的想进去，墙内的人想出去&lt;br&gt;
+                                                                                                                                 《深入理解Java虚拟机》&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>HashMap详解</title>
@@ -17,7 +27,7 @@
       <pubDate>Thu, 17 Sep 2020 11:52:23 +0800</pubDate>
       
       <guid>http://jmh1234.github.io/2020/hashmap%E8%AF%A6%E8%A7%A3/</guid>
-      <description>&lt;p&gt;本文解析HashMap的源码中的一些常见的问题，以及JDK1.7和JDK1.8中的差异。&lt;/p&gt;</description>
+      <description>&lt;p&gt;本文解析 HashMap 的源码中的一些常见的问题，以及 JDK1.7 和 JDK1.8 中的差异。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -35,7 +45,7 @@
       <pubDate>Sun, 30 Aug 2020 18:07:45 +0800</pubDate>
       
       <guid>http://jmh1234.github.io/2020/try-catch-finally-return/</guid>
-      <description>&lt;p&gt;本文将介绍有return的情况下try-catch-finally的执行顺序。&lt;/p&gt;</description>
+      <description>&lt;p&gt;本文将介绍有 return 的情况下 try-catch-finally 的执行顺序。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -44,7 +54,7 @@
       <pubDate>Fri, 28 Aug 2020 10:07:45 +0800</pubDate>
       
       <guid>http://jmh1234.github.io/2020/spring-boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</guid>
-      <description>&lt;p&gt;本文主要介绍Spring Boot项目的三种部署方式以及使用Nginx作为负载均衡器进行流量转发。&lt;/p&gt;</description>
+      <description>&lt;p&gt;本文主要介绍Spring Boot 项目的三种部署方式以及使用 Nginx 作为负载均衡器进行流量转发。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -53,7 +63,7 @@
       <pubDate>Fri, 21 Aug 2020 11:05:18 +0800</pubDate>
       
       <guid>http://jmh1234.github.io/2020/hugo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
-      <description>&lt;p&gt;Hugo是一个由Go语言实现的静态页面生成器，是世界上最快的博客生成器。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Hugo 是一个由 Go 语言实现的静态页面生成器，是世界上最快的博客生成器。&lt;/p&gt;</description>
     </item>
     
   </channel>
