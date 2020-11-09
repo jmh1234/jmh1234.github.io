@@ -24,13 +24,16 @@
     </item>
     
     <item>
-      <title>随记</title>
-      <link>http://jmh1234.github.io/2020/%E9%9A%8F%E8%AE%B0/</link>
+      <title>docker以及git指令总结</title>
+      <link>http://jmh1234.github.io/2020/docker%E4%BB%A5%E5%8F%8Agit%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/</link>
       <pubDate>Tue, 20 Oct 2020 13:40:13 +0800</pubDate>
       
-      <guid>http://jmh1234.github.io/2020/%E9%9A%8F%E8%AE%B0/</guid>
-      <description>该文章中主要记录在平时使用的一些命令，主要包含git命令以及docker命令
-docker git </description>
+      <guid>http://jmh1234.github.io/2020/docker%E4%BB%A5%E5%8F%8Agit%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/</guid>
+      <description>该文章中主要记录总结在平时使用的一些命令，主要包含git命令以及docker命令
+docker  查看 docker 进程
+&amp;ndash; 查看现有的活着的进程：docker ps
+&amp;ndash; 查看所有进程：docker ps -a 查看 docker 镜像：docker images 删除 docker 进程：docker rm -rf + 进程ID/进程名 删除 docker 镜像：docker rmi -rf + 进程ID/进程名  docker jenkins 的启动命令以及详解 docker jenkins 启动命令：
+docker run -d -u root --name=jenkins \   --restart=always \   -p 8081:8080 \   -v /root/.ssh:/root/.ssh \   -v `pwd`/jenkins-data:/var/jenkins_home \   -v /var/run/docker.sock:/var/run/docker.sock:ro \   -v $(which docker):/usr/bin/docker \   jenkins/jenkins:lts 上述的启动命令中 -d 表示后台运行，可以替换为 -it 直接运行。 上述的启动命令中 -u 表示以管理园的权限运行镜像，该进程中的权限为root。 上述的启动命令中 --name=jenkins 表示为该进程命名为 jenkins 。 上述的启动命令中 -p 8081:8080 表示将docker容器中的端口 8080 映射到宿主机的 8081 端口。 上述的启动命令中 /var/run/docker.</description>
     </item>
     
     <item>

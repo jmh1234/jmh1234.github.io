@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="小叽">
+  <meta name="description" content="我的学习记录">
+  <meta name="keywords" content="java">
+  
+  <link rel="prev" href="http://jmh1234.github.io/2020/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/" />
+  <link rel="next" href="http://jmh1234.github.io/2020/ribbitmq-%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/" />
+  <link rel="canonical" href="http://jmh1234.github.io/2020/docker%E4%BB%A5%E5%8F%8Agit%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           docker以及git指令总结 | jimh的博客
+       
+  </title>
+  <meta name="title" content="docker以及git指令总结 | jimh的博客">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/jmh1234.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "docker以及git指令总结",
+    "headline" : "docker以及git指令总结",
+    "description" : "该文章中主要记录总结在平时使用的一些命令，主要包含git命令以及docker命令\ndocker  查看 docker 进程\n\u0026ndash; 查看现有的活着的进程：docker ps\n\u0026ndash; 查看所有进程：docker ps -a 查看 docker 镜像：docker images 删除 docker 进程：docker rm -rf \u002b 进程ID\/进程名 删除 docker 镜像：docker rmi -rf \u002b 进程ID\/进程名  docker jenkins 的启动命令以及详解 docker jenkins 启动命令：\ndocker run -d -u root --name=jenkins \\   --restart=always \\   -p 8081:8080 \\   -v \/root\/.ssh:\/root\/.ssh \\   -v `pwd`\/jenkins-data:\/var\/jenkins_home \\   -v \/var\/run\/docker.sock:\/var\/run\/docker.sock:ro \\   -v $(which docker):\/usr\/bin\/docker \\   jenkins\/jenkins:lts 上述的启动命令中 -d 表示后台运行，可以替换为 -it 直接运行。 上述的启动命令中 -u 表示以管理园的权限运行镜像，该进程中的权限为root。 上述的启动命令中 --name=jenkins 表示为该进程命名为 jenkins 。 上述的启动命令中 -p 8081:8080 表示将docker容器中的端口 8080 映射到宿主机的 8081 端口。 上述的启动命令中 \/var\/run\/docker.",
+    "inLanguage" : "zh-Hans",
+    "author" : "小叽",
+    "creator" : "小叽",
+    "publisher": "小叽",
+    "accountablePerson" : "小叽",
+    "copyrightHolder" : "小叽",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-10-20 13:40:13 \u002b0800 CST",
+    "dateModified" : "2020-10-20 13:40:13 \u002b0800 CST",
+    "url" : "http:\/\/jmh1234.github.io\/2020\/docker%E4%BB%A5%E5%8F%8Agit%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93\/",
+    "wordCount" : "202",
+    "keywords" : [ "docker","git", "jimh的博客"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://jmh1234.github.io/">jimh的博客</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://jmh1234.github.io/">jimh的博客</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">docker以及git指令总结</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://jmh1234.github.io/" rel="author">小叽</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-10-20 itemprop="datePublished">October 20, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://jmh1234.github.io/categories/docker/"> docker </a>
+                        <a href="http://jmh1234.github.io/categories/git/"> git </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>该文章中主要记录总结在平时使用的一些命令，主要包含git命令以及docker命令</p>
+<h1 id="docker">docker</h1>
+<ol>
+<li>查看 docker 进程<br>
+&ndash; 查看现有的活着的进程：<code>docker ps</code><br>
+&ndash; 查看所有进程：<code>docker ps -a</code></li>
+<li>查看 docker 镜像：<code>docker images</code></li>
+<li>删除 docker 进程：<code>docker rm -rf + 进程ID/进程名</code></li>
+<li>删除 docker 镜像：<code>docker rmi -rf + 进程ID/进程名</code></li>
+</ol>
+<h2 id="docker-jenkins-的启动命令以及详解">docker jenkins 的启动命令以及详解</h2>
+<p>docker jenkins 启动命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile">docker run -d -u root --name<span style="color:#f92672">=</span>jenkins <span style="color:#ae81ff">\ </span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>                --restart<span style="color:#f92672">=</span>always <span style="color:#ae81ff">\ </span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>                -p 8081:8080 <span style="color:#ae81ff">\ </span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>                -v /root/.ssh:/root/.ssh <span style="color:#ae81ff">\ </span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>                -v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/jenkins-data:/var/jenkins_home <span style="color:#ae81ff">\ </span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>                -v /var/run/docker.sock:/var/run/docker.sock:ro <span style="color:#ae81ff">\ </span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>                -v <span style="color:#66d9ef">$(</span>which docker<span style="color:#66d9ef">)</span>:/usr/bin/docker <span style="color:#ae81ff">\ </span> <span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>                jenkins/jenkins:lts<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><ol>
+<li>上述的启动命令中 <code>-d</code> 表示后台运行，可以替换为 <code>-it</code> 直接运行。</li>
+<li>上述的启动命令中 <code>-u</code> 表示以管理园的权限运行镜像，该进程中的权限为root。</li>
+<li>上述的启动命令中 <code>--name=jenkins</code> 表示为该进程命名为 jenkins 。</li>
+<li>上述的启动命令中 <code>-p 8081:8080</code> 表示将docker容器中的端口 8080 映射到宿主机的 8081 端口。</li>
+<li>上述的启动命令中 <code>/var/run/docker.sock:/var/run/docker.sock:ro</code> 表示将宿主机上的文件 /var/run/docker.sock
+映射到 /var/run/docker.sock ，ro 表示 docker 容器不能修改宿主机上的文件。</li>
+<li>上述命令中 <code>jenkins/jenkins:lts</code> 表示需启动的镜像名称</li>
+</ol>
+<h1 id="git">git</h1>
+<h2 id="git-提交文件指令">git 提交文件指令</h2>
+<ol>
+<li>添加文件<br>
+&ndash; 添加单个文件：<code>git add + 具体文件路径</code><br>
+&ndash; 添加当前路径下的所有文件：<code>git add .</code></li>
+<li>提交文件<br>
+&ndash; 直接填写说明信息：<code>git commit -m &quot;需提交的文件的相关说明&quot;</code><br>
+&ndash; 通过vim打开新界面并且显示文件差异：<code>git commit -v &quot;需提交的文件的相关说明&quot;</code><br>
+&ndash; 直接填写说明信息并且忽略文件格式、规范的检查：<code>git commit -m &quot;需提交的文件的相关说明&quot; --no-verify</code></li>
+<li>推送到远程仓库<br>
+&ndash; 常规推送到当前分支：<code>git push</code><br>
+&ndash; 强制推送到远程仓库master分支：<code>git push -f origin master</code></li>
+</ol>
+<h2 id="git-从远程仓库拉取代码">git 从远程仓库拉取代码</h2>
+<ol>
+<li>第一次从远程仓库拉取：<code>git remote add origin + &quot;代码地址&quot;</code> 或者 <code>git clone + &quot;代码地址&quot;</code></li>
+<li>更新代码：<code>git pull</code></li>
+</ol>
+<h2 id="git-查看日志">git 查看日志</h2>
+<ol>
+<li>查看当前版本之前的日志（通过reset命令回复之前的版本，无法显示回复后版本之前的日志）：<code>git log</code></li>
+<li>查看所有的日志，包括版本跳转的记录：<code>git reflog</code></li>
+</ol>
+<h2 id="git-版本控制">git 版本控制</h2>
+<p>本地仓库控制代码版本：<code>git reset --hard id (id 通过 git log 显示的commit后面的一串标识)</code></p>
+<h2 id="git-分支">git 分支</h2>
+<ol>
+<li>查看现有的分支：<code>git branch</code></li>
+<li>创建新的分支x：<code>git branch x</code></li>
+<li>将当前分支切换到x：<code>git checkout x</code></li>
+<li>删除分支x：<code>git branch -d x</code></li>
+</ol>
+<h2 id="git-版本冲突解决">git 版本冲突解决</h2>
+<ol>
+<li>将git上的代码拉倒本地另外一个分支(新建分支x)： <code>git fetch origin master:x</code></li>
+<li>将两个分支合并，手动解决冲突： <code>git merge x</code></li>
+<li>删除新建的分支： <code>git branch -d x</code></li>
+<li>提交新的代码： <code>git commit -v</code></li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>小叽 </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://jmh1234.github.io/2020/docker%E4%BB%A5%E5%8F%8Agit%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/>http://jmh1234.github.io/2020/docker%E4%BB%A5%E5%8F%8Agit%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://jmh1234.github.io/tags/docker/">
+                    #docker</a></span>
+            
+            <span class="tag"><a href="http://jmh1234.github.io/tags/git/">
+                    #git</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://jmh1234.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://jmh1234.github.io/2020/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/" class="prev" rel="prev" title="Java内存区域与内存溢出"><i class="iconfont icon-left"></i>&nbsp;Java内存区域与内存溢出</a>
+         
+        
+        <a href="http://jmh1234.github.io/2020/ribbitmq-%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/" class="next" rel="next" title="RabbitMQ详解">RabbitMQ详解&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2020 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://jmh1234.github.io/">小叽</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
