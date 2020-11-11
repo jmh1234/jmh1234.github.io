@@ -57,7 +57,7 @@
     "datePublished": "2020-10-20 13:40:13 \u002b0800 CST",
     "dateModified" : "2020-10-20 13:40:13 \u002b0800 CST",
     "url" : "http:\/\/jmh1234.github.io\/2020\/docker%E4%BB%A5%E5%8F%8Agit%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93\/",
-    "wordCount" : "202",
+    "wordCount" : "224",
     "keywords" : [ "docker","git", "jimh的博客"]
 }
 </script>
@@ -172,7 +172,25 @@
 映射到 /var/run/docker.sock ，ro 表示 docker 容器不能修改宿主机上的文件。</li>
 <li>上述命令中 <code>jenkins/jenkins:lts</code> 表示需启动的镜像名称</li>
 </ol>
-<h1 id="git">git</h1>
+<h2 id="docker-镜像的制作以及上传">docker 镜像的制作以及上传</h2>
+<ol>
+<li>docker save blog &gt; /tmp/blog.tar</li>
+<li>scp blog.tar <a href="mailto:ubuntu@146.56.220.117">ubuntu@146.56.220.117</a>:/home/ubuntu/blog.tar</li>
+<li>docker load -i /home/ubuntu/blog.tar</li>
+</ol>
+<h2 id="blog项目-dockerfile-文件示例">blog项目 dockerfile 文件示例</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> java:openjdk-8u111-alpine</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> mkdir /app<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> target/blog-0.0.1.jar /app<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8080</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;java&#34;</span>,<span style="color:#e6db74">&#34;-jar&#34;</span>,<span style="color:#e6db74">&#34;blog-0.0.1.jar&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h1 id="git">git</h1>
 <h2 id="git-提交文件指令">git 提交文件指令</h2>
 <ol>
 <li>添加文件<br>
