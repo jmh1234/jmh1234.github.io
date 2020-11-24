@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="小叽">
+  <meta name="description" content="我的学习记录">
+  <meta name="keywords" content="java">
+  
+  <link rel="prev" href="http://jmh1234.github.io/2020/ribbitmq-%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/" />
+  
+  <link rel="canonical" href="http://jmh1234.github.io/2020/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Linux常用命令总结 | jimh的博客
+       
+  </title>
+  <meta name="title" content="Linux常用命令总结 | jimh的博客">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/jmh1234.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "Linux常用命令总结",
+    "headline" : "Linux常用命令总结",
+    "description" : "\u003cp\u003e本文整理和介绍 Linux 常用的一些指令。\u003c\/p\u003e",
+    "inLanguage" : "zh-Hans",
+    "author" : "小叽",
+    "creator" : "小叽",
+    "publisher": "小叽",
+    "accountablePerson" : "小叽",
+    "copyrightHolder" : "小叽",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-11-24 16:07:46 \u002b0800 CST",
+    "dateModified" : "2020-11-24 16:07:46 \u002b0800 CST",
+    "url" : "http:\/\/jmh1234.github.io\/2020\/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93\/",
+    "wordCount" : "329",
+    "keywords" : [ "Linux", "jimh的博客"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://jmh1234.github.io/">jimh的博客</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://jmh1234.github.io/">jimh的博客</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Linux常用命令总结</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://jmh1234.github.io/" rel="author">小叽</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-11-24 itemprop="datePublished">November 24, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://jmh1234.github.io/categories/linux/"> Linux </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>本文整理和介绍 Linux 常用的一些指令。</p>
+<h1 id="一文件基本操作命令">一、文件基本操作命令</h1>
+<h2 id="1-ls-命令">1. ls 命令</h2>
+<p>简介：ls命令的功能是显示指定目录下的文件目录清单相当于dos下的dir命令，而且其参数更加丰富多样。<br>
+参数说明：</p>
+<ol>
+<li>不带参数  显示指定目录中的文件清单，如果没有指定任何目录，则默认为当前目录。（ls）</li>
+<li>-a  表示查看所有的文件，包含隐藏文件。（ls -a）</li>
+<li>-l  以长格式列表输出指定目录中的文件清单，显示文件具体信息包括权限、日期、名称等信息。（ls -l）</li>
+<li>-R  递归显示指定目录下的文件清单，即会显示指定目录分支内各子目录中的文件清单。（ls -R）</li>
+</ol>
+<h2 id="2-pwd-命令">2. pwd 命令</h2>
+<p>示例：pwd<br>
+功能：显示当前目录。</p>
+<h2 id="3-mkdir-命令">3. mkdir 命令</h2>
+<p>示例：mkdir abc<br>
+功能：在当前目录下创建文件夹abc</p>
+<h2 id="4-cd-命令">4. cd 命令</h2>
+<p>示例：cd /etc/bin<br>
+功能：将当前文件路径设置为 /etc/bin 使用命令 <code>pwd</code> 显示的路径为：/etc/bin，
+不带参数的 <code>cd</code> 命令直接将当前的工作目录切换为该用户的主目录。<br>
+注意：字符 “~” 代表（当前）用户的主目录。</p>
+<h2 id="5-touch-命令">5. touch 命令</h2>
+<p>示例：touch myfile.txt<br>
+功能：如果当前路径下文件 myfile.txt 不存在，则创建一个大小为0字节名为 myfile.txt 的空文件，
+如果 myfile.txt 已存在，则将改变 myfile.txt 的最后修改时间。</p>
+<h2 id="6-cp-命令">6. cp 命令</h2>
+<p>示例：cp /etc/abc.txt bcd<br>
+功能：将/etc/目录下的文件abc.txt复制到文件夹录bcd中。<br>
+注意：“*” 和 &ldquo;?&rdquo; 是通配符。“*”：可以匹配多个字符；“?”：只能匹配一个字符。</p>
+<h2 id="7-mv-命令">7. mv 命令</h2>
+<p>示例一（将文件移动到目录中）：mv file mydir1<br>
+功能：如果mydir1存在且是个目录，则将文件file移动到目录mydir1中。</p>
+<p>示例二：（文件改名）：mv myfile myFile2<br>
+功能：将文件（或目录）myfile 改名为 myfile2。</p>
+<h2 id="8-rmdir-命令">8. rmdir 命令</h2>
+<p>示例：rmdir  mydir1<br>
+功能：删除指定的空目录。</p>
+<h2 id="9-rm-命令">9. rm 命令</h2>
+<p>示例一（删除文件）：rm php.ini<br>
+功能：删除指定的文件 php.ini。</p>
+<p>示例一（删除目录）：rm -rf abc<br>
+功能：参数<code>-r</code>是递归的意思，即可以删除非空目录；参数<code>-f</code>是强制的意思。</p>
+<h2 id="10-cat-命令">10. cat 命令</h2>
+<p>示例一（查看文件内容）：cat myfile
+示例二（写入文件）：</p>
+<ol>
+<li>追加写入文件：cat &raquo; myfile.txt &laquo; end</li>
+<li>覆盖写入文件：cat &gt; myfile.txt &laquo; end<br>
+注意：上文中的 end 为结束的标记, end 不会在文件中显示出来</li>
+</ol>
+<h1 id="二用户组管理命令">二、用户、组管理命令</h1>
+<p>&mdash; Linux采用组来组织和管理用户<br>
+&mdash; 在Linux中每个用户有唯一的用户标识符UID，该UID是一个无符号整数。<br>
+&mdash; 同时每个用户也必须至少属于一个组，也有组标识符GID。<br>
+&mdash; 其中UID与GID独立编号。</p>
+<h2 id="1-groupadd-命令">1. groupadd 命令</h2>
+<p>示例一（创建组账号）：groupadd mygroup1<br>
+功能：创建一个新组mygroup1，其GID号为已存在GID号的下一个顺序编号。<br>
+说明：创建一个组的同时会在/etc/group文件中为该组增加相应的一行，用来记录该组的名称、GID号及成员等信息。</p>
+<p>示例二（创建组账号并设置其GID号）：groupadd -g 5000 mygroup2<br>
+功能：创建一个新组mygroup2，并指定其GID号为5000，其中<code>-g</code>用来设置用户的主要组，每个用户都有一个主要组。</p>
+<h2 id="2-useradd-命令">2. useradd 命令</h2>
+<p>示例一(创建用户账号): useradd  user1<br>
+功能：创建一个用户user1，同时在 /etc/passwd 文件和 /etc/shadow 文件增加一行，
+并自动为用户创建相应的主目录：/home/user1。<br>
+说明：/etc/passwd 文件记录了系统中每个用户的用户名、UID号、GID号、主目录、shell等信息。<br>
+注意：用户的口令原来也存放在此文件中，现在为了保证安全采用了影子口令文件 /etc/shadow 来保存每个用户的口令。</p>
+<p>示例二（创建用户账号并设置相应属性值）：useradd -u 600 -g mygroup1 -G mygroup2 -d /home/student1 s1<br>
+功能：创建用户s1，其中参数<br>
+-u指定UID号为600；<br>
+-g指定用户的主要组为mygroup1；<br>
+-G指定用户的附加组为mygroup2，每个用户可以有多个附加组；<br>
+-d 指定用户的主目录为/home/student1。</p>
+<h1 id="三文件属性操作命令">三、文件属性操作命令</h1>
+<h2 id="chmod-命令">chmod 命令</h2>
+<p>chmod示例一（字母方式）：chmod u+x host.conf<br>
+功能：为文件 host.conf 的属主增加执行权限。<br>
+权限字母含义：</p>
+<ol>
+<li>字母 u 针对属主、g 针对属组、o 针对其他用户、a 针对所有用户；</li>
+<li>= 表示赋予（设置）指定权限，要注意它会覆盖原权限，+ 表示在原有权限的基础上增加指定权限，- 表示在原有权限的基础上去掉指定权限；</li>
+<li>r、w、x 三种权限，既可以单独使用也可以组合使用</li>
+</ol>
+<p>chmod示例二（数字方式）：chmod 764 hosts.conf<br>
+功能：将文件 host.conf 的权限设置为：属主拥有全部权限、属组拥有读写权限、其他用户拥有只读权限。</p>
+<p>数字来源：这种方式是先将每个权限位化成二进制数，其中如果某权限位是“-”则用0来表示，否则用1来表示；接着，将这9列权限分为三组（每三位一组），再将每组化成一个八进制数。<br>
+例如：某文件有如下权限rwxrw-r&ndash;，则转换为二进制数为111110100，再化为八进制数则为764；反之，当看到八进制数764时也应该很快转化为相应权限。</p>
+<h1 id="四查找命令">四、查找命令</h1>
+<h2 id="1-which-命令">1. which 命令</h2>
+<p>示例：which mydir<br>
+功能：显示文件夹 mydir 的绝对路径。<br>
+注意：该命令只能在命令搜索路径指定的目录中去查找命令或程序。</p>
+<h2 id="2-whereis-命令">2. whereis 命令</h2>
+<p>示例：whereis ln<br>
+功能：查询指定命令所在目录以及帮助文档所在目录。</p>
+<h2 id="3-find-命令">3. find 命令</h2>
+<p>示例一（—按文件名查找）：find / -name &ldquo;dhcpd*&rdquo;<br>
+功能：参数<code>-name</code> 指明按文件名进行查找，即从<code>/</code>目录开始查找以dhcpd开头的所有文件。</p>
+<p>示例二（按文件大小查找）：find /etc -size 8<br>
+功能：从/etc下开始查找大小为8块的文件，此处默认512字节为1块。若认为块大小为1k，则应写为8k。其它可以使用的单位有c（字节）、w（双字节）、M（兆字节）和G（吉字节）。</p>
+<p>示例三（按文件类型查找）：find  /var -type d -print<br>
+功能：从/var目录下开始查找类型为目录的文件，其中参数-print是显示到屏幕上的意思，经常省略。</p>
+<p>示例四（按文件的修改时间查找）：find . -cmin -5<br>
+功能：从当前目录下查找5分钟之内修改过的文件。如果把“-5”改为 “+5”，则表示查找5分钟以前修改过的文件。不带“+”或“-”，则认为整5分钟。</p>
+<p>示例五（按文件的权限查找）：ind mytmp -perm +755
+功能：查找 mytmp 目录下的满足755中任何一种权限的文件，即符合任何一个指定的权限位即可。若为&quot;-&ldquo;表示权限至少满足755的文件，不带则表示权限刚好为755的文件。</p>
+<h1 id="五压缩与打包命令">五、压缩与打包命令</h1>
+<h2 id="1-tar命令">1. tar命令</h2>
+<p>tar命令是经典的备份/还原命令，几乎所有最新的软件包都是通过tar包发布的。<br>
+示例一（打包(备份)）：tar -cvf myetc.tar /etc<br>
+功能：将目录 /etc 打包为一个名为 myetc.tar 的文档。<br>
+说明：</p>
+<ol>
+<li>参数-c的功能是打包（创建），</li>
+<li>参数-v是显示处理过程，</li>
+<li>参数-f是用来指定文档名；</li>
+</ol>
+<p>示例二（打包(备份)）并压缩：tar -zcvf myetc.tar.gz /etc<br>
+功能：将目录 /etc 打包并压缩为一个名为 myetc.tar.gz 的文档。<br>
+说明：</p>
+<ol>
+<li>其中参数-z是调用gzip命令来压缩，扩展名为gz，</li>
+<li>参数-Z是调用compress命令来压缩，扩展名为Z，</li>
+<li>参数-j是调用bzip2命令来压缩，扩展名为bz2。</li>
+</ol>
+<h1 id="六查看进程命令">六、查看进程命令</h1>
+<h2 id="1-ps-命令">1. ps 命令</h2>
+<p>示例一（不带参数）：ps<br>
+功能：查询在当前控制台上运行的进程。</p>
+<p>示例二（查看所有进程）：ps -aux<br>
+功能：查询系统中所有运行的进程，包括后台进程，其中参数a是所有进程，参数x包括不占用控制台的进程，参数u显示用户。</p>
+<p>示例三（查看所有进程）：ps -ef<br>
+功能：查询系统中所有运行的进程，包括后台进程，而且可以显示出每个进程的父进程号。</p>
+<h2 id="2-pstree命令">2. pstree命令</h2>
+<p>示例一（树状格式显示进程列表）：pstree<br>
+功能：以树状格式显示系统的进程列表。</p>
+<p>示例二（带进程号的树状格式显示进程列表）：pstree -p<br>
+功能：以树状格式显示系统的进程列表，并标识出每个进程的进程号。</p>
+<h2 id="3-top命令">3. top命令</h2>
+<p>示例：top<br>
+功能：动态地显示系统中的进程。</p>
+<h2 id="4-kill命令">4. kill命令</h2>
+<p>示例一（杀掉指定进程）：kill 3029<br>
+功能：kill命令可以杀掉一个进程，当然普通用户只能杀掉自己的进程。<br>
+说明：上述命令中3029是进程号；一般在执行kill命令之前，先用ps或pstree来查询一下将要被杀掉的进程的进程号。</p>
+<p>示例二（强制杀掉指定进程）：kill -9 3029
+功能：强制终止 3029 号进程的运行，其中参数 -9 代表强制的意思。<br>
+说明：实际上 kill 命令是向该进程发送信号，该进程接到信号后决定是否停止运行，有些守护进程必须要收到参数 9 才终止运行。</p>
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>小叽 </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://jmh1234.github.io/2020/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/>http://jmh1234.github.io/2020/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://jmh1234.github.io/tags/linux/">
+                    #Linux</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://jmh1234.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://jmh1234.github.io/2020/ribbitmq-%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/" class="prev" rel="prev" title="RabbitMQ详解"><i class="iconfont icon-left"></i>&nbsp;RabbitMQ详解</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2020 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://jmh1234.github.io/">小叽</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

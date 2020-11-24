@@ -10,7 +10,7 @@
   <meta name="keywords" content="java">
   
   <link rel="prev" href="http://jmh1234.github.io/2020/docker%E4%BB%A5%E5%8F%8Agit%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/" />
-  
+  <link rel="next" href="http://jmh1234.github.io/2020/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" />
   <link rel="canonical" href="http://jmh1234.github.io/2020/ribbitmq-%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -647,15 +647,15 @@ String routekey <span style="color:#f92672">=</span> <span style="color:#e6db74"
   <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-starter-amqp<span style="color:#f92672">&lt;/artifactId&gt;</span>
 <span style="color:#f92672">&lt;/dependency&gt;</span>
 </code></pre></div><h5 id="2-配置配置文件">2. 配置配置文件</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">spring</span>:
-  <span style="color:#66d9ef">application</span>:
-    <span style="color:#66d9ef">name</span>: springboot_rabbitmq
-  <span style="color:#66d9ef">rabbitmq</span>:
-    <span style="color:#66d9ef">host</span>: <span style="color:#ae81ff">10.15.0.9</span>
-    <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">5672</span>
-    <span style="color:#66d9ef">username</span>: ems
-    <span style="color:#66d9ef">password</span>: <span style="color:#ae81ff">123</span>
-    <span style="color:#66d9ef">virtual-host</span>: /ems
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">spring</span>:
+  <span style="color:#f92672">application</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">springboot_rabbitmq</span>
+  <span style="color:#f92672">rabbitmq</span>:
+    <span style="color:#f92672">host</span>: <span style="color:#ae81ff">10.15.0.9</span>
+    <span style="color:#f92672">port</span>: <span style="color:#ae81ff">5672</span>
+    <span style="color:#f92672">username</span>: <span style="color:#ae81ff">ems</span>
+    <span style="color:#f92672">password</span>: <span style="color:#ae81ff">123</span>
+    <span style="color:#f92672">virtual-host</span>: <span style="color:#ae81ff">/ems</span>
 </code></pre></div><p><code>RabbitTemplate</code>  用来简化操作     使用时候直接在项目中注入即可使用</p>
 <h3 id="51-第一种hello-world模型使用">5.1 第一种hello world模型使用</h3>
 <ol>
@@ -1036,6 +1036,8 @@ String routekey <span style="color:#f92672">=</span> <span style="color:#e6db74"
         
         <a href="http://jmh1234.github.io/2020/docker%E4%BB%A5%E5%8F%8Agit%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/" class="prev" rel="prev" title="docker以及git指令总结"><i class="iconfont icon-left"></i>&nbsp;docker以及git指令总结</a>
          
+        
+        <a href="http://jmh1234.github.io/2020/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" class="next" rel="next" title="Linux常用命令总结">Linux常用命令总结&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

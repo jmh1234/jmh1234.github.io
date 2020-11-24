@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on jimh的博客</title>
+    <link>http://jmh1234.github.io/tags/linux/</link>
+    <description>Recent content in Linux on jimh的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Tue, 24 Nov 2020 16:07:46 +0800</lastBuildDate><atom:link href="http://jmh1234.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux常用命令总结</title>
+      <link>http://jmh1234.github.io/2020/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Tue, 24 Nov 2020 16:07:46 +0800</pubDate>
+      
+      <guid>http://jmh1234.github.io/2020/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;本文整理和介绍 Linux 常用的一些指令。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
