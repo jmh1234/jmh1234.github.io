@@ -6,7 +6,29 @@
     <description>Recent content in Java on jimh的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Fri, 23 Oct 2020 13:40:13 +0800</lastBuildDate><atom:link href="http://jmh1234.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 May 2022 09:31:42 +0800</lastBuildDate><atom:link href="http://jmh1234.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SpringCloud学习笔记</title>
+      <link>http://jmh1234.github.io/2022/springcloud%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 05 May 2022 09:31:42 +0800</pubDate>
+      
+      <guid>http://jmh1234.github.io/2022/springcloud%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>微服务   什么是微服务
+微服务是一种构建应用的架构方案。微服务架构有别于更为传统的单体式方案，可将应用拆分成多个核心功能。每个功能都被称为一项服务，可以单独构建和部署。
+  分布式部署
+  微服务应用之间通信 restful api RestTemplate.postForProject .getForProject
+  优缺点 good：
+  易于开发和维护：一个微服务只会关注一个特定的业务功能，所以业务清晰、代码量较少。开发和 维护单个微服务相对简单。
+  单个微服务启动较快
+  局部修改容易部署：单一应用只要有修改，就得重新部署整个应用。微服务解决了这样的问题。一 般来说，对某个微服务进行修改，只 需要重新部署这个服务即可。
+  技术栈不受限制：在微服务架构中，可以结合项目业务及团队的特点，合理的选择技术栈。
+  按需伸缩：更易扩展程序，添加新的功能 bad:
+  运维要求高
+  分布式固有的复杂性：使用微服务构建的是分布式系统。对于一个分布式系统，系统容错、网络延 迟、分布式事务等都会带来巨大的问 题。
+  接口调整成本高：微服务之间通过接口进行通信。如果修改某一个微服务的API，可能所有用到这 个接口的微服务都需要进行调整。
+  springCloud  技术栈 服务开发 Spring Boot、Spring、Spring MVC等 服务注册与发现 Eureka、Zookeeper等 服务调用 Rest、RPC等 服务熔断器 Hystrix、Envoy等 负载均衡 Ribbon、Nginx等 服务接口调用(客户端调用服务的简化工具) Feign等 消息队列 Kafka、ActiveMQ等 服务配置中心管理 Spring Cloud Conﬁg等 服务路由（API网关） Zuul等 服务监控 Zabbix、Nagios等 全链路追踪 Zipkin，Brave等 服务部署 Docker、OpenStack等 数据流处理 Spring Cloud Stream（Redis,Rabbit,Kafka等发送接收消息） 事件消息总线 Spring Cloud Bus 什么是springCloud 基于springBoot提供了一套微服务解决方案，包括服务注册与发现，配置中心，全链路监控，服务网关，负载均衡，熔断器等组件，除了基于NetFlix的开源组件做高度抽象封装之外，还有一些选型 中立的开源组件。  eurake eurake显示status 为instanceID</description>
+    </item>
+    
     <item>
       <title>RabbitMQ详解</title>
       <link>http://jmh1234.github.io/2020/ribbitmq-%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/</link>
